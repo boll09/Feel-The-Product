@@ -1,0 +1,2894 @@
+<!doctype html>
+<html lang="vi">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>Feel the Product</title>
+  <meta name="claude:viewport-fit-sides" content="cover">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&family=Patrick+Hand&display=swap">
+  <style>
+    [hidden]:not([hidden=until-found i]) {
+      display: none !important
+    }
+  </style>
+</head>
+
+<body>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0E3A33;
+      --surface: #F7EEDC;
+      --fg: #102D29;
+      --muted: #294A43;
+      --line: #A3B5A8;
+      --accent: #F08A6C;
+      --on-accent: #061A17;
+      --focus: #F2D98B;
+      --lavender: #B7A4E3;
+      --sage: #A9C6AE;
+      --warn-bg: #F6C8B3;
+      --coral-soft: #FFB39A;
+      --sage-light: #D7E5D9;
+      --surface-muted: #E8E2D2;
+      --sand: #E8D8B9;
+      --sand-shadow: #D7C6A7;
+      --rose: #E9A9A2;
+      --rose-shadow: #D98D87;
+      --lavender-shadow: #9E89D0;
+      --pump-highlight: #D7CAE9;
+      --footer-bg: #082A25;
+      --footer-line: #93AA9D;
+      --solution-bg: #17473E;
+      --dock-line: #6E897C;
+      --dock-bg: rgba(14, 58, 51, .97);
+      --phone-muted: #82988B;
+      --ingredient-rule: #B7B6A8;
+      --shadow-soft: rgba(0, 0, 0, .15);
+      --shadow-deep: rgba(0, 0, 0, .28);
+      --shadow-bottle: rgba(0, 0, 0, .2);
+      --surface-wash: rgba(247, 238, 220, .08);
+      --white-wash: rgba(255, 255, 255, .55);
+      --disabled-bg: #294A43;
+      --disabled-fg: #D7E5D9;
+      --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+      --font-body: "Inter", "Segoe UI", system-ui, sans-serif;
+      --font-hand: "Patrick Hand", "Segoe Print", cursive;
+      --fs: 1.25rem;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--font-body);
+      font-size: var(--fs);
+      line-height: 1.6;
+      padding-left: max(16px, env(safe-area-inset-left, 0px));
+      padding-right: max(16px, env(safe-area-inset-right, 0px));
+      padding-block: 18px 48px;
+    }
+
+    body[data-size="sm"] {
+      --fs: 1.0625rem;
+    }
+
+    body[data-size="lg"] {
+      --fs: 1.375rem;
+    }
+
+    body[data-size="xl"] {
+      --fs: 1.625rem;
+    }
+
+    .wrap {
+      max-width: 1180px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      padding-bottom: 120px;
+    }
+
+    h1,
+    h2 {
+      font-family: var(--font-display);
+      line-height: 1.2;
+      margin: 0;
+      text-wrap: balance;
+    }
+
+    button {
+      font: inherit;
+      color: inherit;
+      cursor: pointer;
+    }
+
+    :focus-visible {
+      outline: 3px solid var(--fg);
+      outline-offset: 4px;
+      box-shadow: 0 0 0 7px var(--focus);
+    }
+
+    .seg {
+      display: inline-flex;
+      border: 2px solid currentColor;
+      border-radius: 14px;
+    }
+
+    .seg button {
+      background: transparent;
+      border: 0;
+      min-width: 56px;
+      min-height: 56px;
+      padding: 0 12px;
+      font-weight: 700;
+    }
+
+    .seg button:first-child {
+      border-radius: 11px 0 0 11px;
+    }
+
+    .seg button:last-child {
+      border-radius: 0 11px 11px 0;
+    }
+
+    .seg button:only-child {
+      border-radius: 11px;
+    }
+
+    .top .seg {
+      color: var(--surface);
+    }
+
+    .seg button[aria-pressed="true"] {
+      background: var(--surface);
+      color: var(--fg);
+    }
+
+    .skip-link {
+      position: absolute;
+      z-index: 50;
+      top: 8px;
+      left: 8px;
+      transform: translateY(-160%);
+      padding: 12px 16px;
+      border: 2px solid var(--focus);
+      border-radius: 10px;
+      background: var(--surface);
+      color: var(--fg);
+      font-weight: 800;
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .poster-hero {
+      color: var(--surface);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 15px;
+      padding: 18px 0;
+    }
+
+    .poster-hero h1 {
+      max-width: 9ch;
+      font-size: clamp(3rem, 5.2vw, 5.2rem);
+      font-weight: 800;
+      letter-spacing: -.045em;
+      line-height: .98;
+    }
+
+    .poster-hero h1 span {
+      color: var(--accent);
+    }
+
+    .script-line {
+      color: var(--coral-soft);
+      font: 700 clamp(2rem, 3.2vw, 2.8rem)/1.1 var(--font-hand);
+      margin: 0;
+    }
+
+    .poster-note {
+      align-self: flex-start;
+      max-width: 390px;
+      color: var(--focus);
+      border: 2px solid var(--focus);
+      border-radius: 16px 16px 16px 4px;
+      padding: 12px 18px;
+      margin: 2px 0 0;
+      font: 600 clamp(1.45rem, 2vw, 1.8rem)/1.22 var(--font-hand);
+    }
+
+    .campaign-tag {
+      margin: 0;
+      color: var(--sage-light);
+      font-size: max(14px, .78rem);
+      font-weight: 700;
+      letter-spacing: .12em;
+    }
+
+    .tabs {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      flex: 1 1 100%;
+      gap: clamp(4px, 1vw, 14px);
+      align-items: end;
+      padding: 22px 0 0;
+    }
+
+    .tab {
+      position: relative;
+      display: flex;
+      flex: 1 1 0;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 8px;
+      min-width: 0;
+      min-height: 282px;
+      padding: 30px 6px 16px;
+      background: transparent;
+      border: 2px solid transparent;
+      border-radius: 24px;
+      color: var(--surface);
+      font-weight: 700;
+      font-size: max(14px, clamp(.85rem, 1.2vw, 1rem));
+      line-height: 1.2;
+      text-align: center;
+    }
+
+    .tab[aria-selected="true"] {
+      border-color: var(--focus);
+      background: var(--surface-wash);
+      transform: translateY(-10px);
+    }
+
+    .tab[aria-selected="true"]::after {
+      content: attr(data-selected-label);
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      white-space: nowrap;
+      border-radius: 99px;
+      padding: 5px 6px;
+      background: var(--focus);
+      color: var(--fg);
+      font-size: max(14px, .8rem);
+    }
+
+    .hero {
+      position: relative;
+      background: var(--surface);
+      color: var(--fg);
+      border: 2px solid var(--surface);
+      border-radius: 26px;
+      padding: 24px 22px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      box-shadow: 0 14px 38px var(--shadow-soft);
+    }
+
+    .eyebrow {
+      font-size: max(14px, .78rem);
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .hero h2 {
+      font-size: clamp(1.7em, 3vw, 2.2em);
+      font-weight: 800;
+      letter-spacing: -.025em;
+    }
+
+    .sub {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .symbol-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 12px 14px;
+      background: var(--surface-muted);
+      border: 2px solid var(--muted);
+      border-radius: 14px;
+    }
+
+    .symbol-row .glyph {
+      height: 34px;
+      width: 60px;
+      color: var(--fg);
+      flex: none;
+    }
+
+    .symbol-row p {
+      margin: 0;
+      font-size: .9em;
+    }
+
+    .listen {
+      width: 100%;
+      min-height: 76px;
+      border: 0;
+      border-radius: 18px;
+      background: var(--accent);
+      color: var(--on-accent);
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.2em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 14px 18px;
+    }
+
+    .listen svg {
+      width: 1.5em;
+      height: 1.5em;
+      flex: none;
+    }
+
+    .status {
+      min-height: 1.6em;
+      margin: 0;
+      font-size: max(14px, .9em);
+      color: var(--muted);
+    }
+
+    .tools {
+      color: var(--fg);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .tools .group {
+      display: flex;
+      flex: 1 1 280px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .tools .lbl {
+      font-size: max(14px, .9rem);
+      font-weight: 700;
+      color: var(--fg);
+    }
+
+    .sec {
+      background: var(--surface);
+      color: var(--fg);
+      border: 2px solid var(--line);
+      border-radius: 22px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      scroll-margin-top: 16px;
+    }
+
+    .sec h2 {
+      font-size: 1.3em;
+      font-weight: 700;
+    }
+
+    .sec p {
+      margin: 0;
+    }
+
+    .sec.reading {
+      border-color: var(--fg);
+      outline: 5px solid var(--focus);
+      outline-offset: 3px;
+    }
+
+    .sec.warn {
+      background: var(--warn-bg);
+      border: 3px solid var(--fg);
+      padding: 22px;
+    }
+
+    .sec.warn h2 {
+      color: var(--fg);
+    }
+
+    .sec .play {
+      align-self: flex-start;
+      min-height: 56px;
+      border: 2px solid var(--fg);
+      border-radius: 12px;
+      background: transparent;
+      padding: 0 16px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .sec .play svg {
+      width: 1.1em;
+      height: 1.1em;
+    }
+
+    ol.steps {
+      margin: 0;
+      padding-left: 1.4em;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .ingredient-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .ingredient-eyebrow {
+      margin: 0 0 4px !important;
+      color: var(--muted);
+      font-size: max(14px, .68em);
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .ingredient-count {
+      flex: none;
+      padding: 5px 10px;
+      border: 1px solid var(--muted);
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: max(14px, .72em);
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .ingredient-note {
+      color: var(--muted);
+      font-size: max(14px, .82em);
+    }
+
+    .ingredient-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0 20px;
+      margin: 4px 0 0;
+      padding: 0;
+      list-style: none;
+      border-top: 1px solid var(--ingredient-rule);
+      counter-reset: ingredient;
+    }
+
+    .ingredient-list li {
+      display: grid;
+      grid-template-columns: 2em minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 8px;
+      min-width: 0;
+      min-height: 58px;
+      padding: 8px 2px;
+      border-bottom: 1px solid var(--ingredient-rule);
+      counter-increment: ingredient;
+      font-size: max(14px, .78em);
+      line-height: 1.35;
+    }
+
+    .ingredient-list li::before {
+      content: counter(ingredient, decimal-leading-zero);
+      color: var(--muted);
+      font-size: max(14px, .75em);
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .ingredient-name {
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+
+    .ingredient-list li.is-allergen {
+      padding-inline: 9px;
+      border: 1px solid var(--fg);
+      border-radius: 12px;
+      background: var(--focus);
+      font-weight: 700;
+    }
+
+    .ingredient-tag {
+      padding: 3px 7px;
+      border-radius: 999px;
+      background: var(--fg);
+      color: var(--surface);
+      font-size: max(14px, .68em);
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .main-content,
+    .information-sections {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .main-content {
+      gap: 28px;
+    }
+
+    .information-sections {
+      gap: 16px;
+    }
+
+    .voice-warning {
+      margin: 0;
+      padding: 10px 12px;
+      border: 2px solid var(--fg);
+      border-radius: 12px;
+      background: var(--warn-bg);
+      color: var(--fg);
+      font-size: max(14px, .82em);
+      font-weight: 700;
+    }
+
+    .steps li.reading {
+      border-radius: 8px;
+      outline: 3px solid var(--focus);
+      outline-offset: 3px;
+    }
+
+    .solutions {
+      color: var(--surface);
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .solution {
+      min-width: 0;
+      min-height: 185px;
+      padding: 18px;
+      border: 1px solid var(--sage);
+      border-radius: 18px;
+      background: var(--solution-bg);
+    }
+
+    .solution strong {
+      display: block;
+      color: var(--focus);
+      font-family: var(--font-display);
+      font-size: 1.1em;
+    }
+
+    .solution p {
+      margin: 6px 0 0;
+      font-size: max(1rem, .84em);
+      line-height: 1.4;
+    }
+
+    .solution .glyph {
+      color: var(--surface);
+      width: 54px;
+      margin-top: 8px;
+    }
+
+    .qr-mark {
+      display: inline-grid;
+      place-items: center;
+      width: 48px;
+      height: 48px;
+      margin-top: 8px;
+      border: 0;
+      background: none;
+    }
+
+    .solution-listen {
+      color: var(--focus) !important;
+    }
+
+    footer {
+      color: var(--surface);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: 0 calc(-1 * max(16px, env(safe-area-inset-left, 0px))) -48px;
+      padding: 30px max(16px, env(safe-area-inset-right, 0px)) calc(150px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px));
+      background: var(--footer-bg);
+    }
+
+    footer strong {
+      font-family: var(--font-display);
+    }
+
+    @media (max-width: 480px) {
+      .tools .seg {
+        max-width: 100%;
+      }
+
+      .tools .seg button {
+        min-width: 48px;
+        padding: 0 9px;
+      }
+
+      .solutions {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 10px;
+      }
+
+      .ingredient-list {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .ingredient-list li {
+        min-height: 54px;
+        font-size: max(14px, .84em);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+      }
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+
+      .sec,
+      .tab {
+        transition: border-color .2s, box-shadow .2s, background .2s, transform .2s;
+      }
+    }
+
+    .page-head {
+      max-width: 1180px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .wordmark {
+      color: var(--surface);
+      font: 800 1rem/1.1 var(--font-display);
+      letter-spacing: -.025em;
+    }
+
+    .wordmark span {
+      color: var(--accent);
+    }
+
+    .wordmark small {
+      display: block;
+      margin-top: 5px;
+      color: var(--surface);
+      font: 600 max(14px, .68rem)/1.2 var(--font-body);
+      letter-spacing: .12em;
+    }
+
+    .intro-grid {
+      display: grid;
+      grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+      align-items: center;
+      gap: clamp(24px, 5vw, 64px);
+      min-height: 430px;
+    }
+
+    .visual-stage {
+      min-width: 0;
+      position: relative;
+      display: flex;
+      align-items: flex-start;
+    }
+
+    .svg-defs {
+      position: absolute;
+      width: 0;
+      height: 0;
+      overflow: hidden;
+    }
+
+    .bottle-art {
+      width: min(100%, 150px);
+      height: 210px;
+      overflow: visible;
+      filter: drop-shadow(0 10px 6px var(--shadow-bottle));
+    }
+
+    .bottle-base-shadow {
+      fill: var(--shadow-deep);
+      filter: blur(4px);
+    }
+
+    .bottle-mark {
+      fill: var(--fg);
+    }
+
+    .bottle-qr-frame {
+      fill: var(--surface);
+      stroke: var(--fg);
+      stroke-width: 2;
+    }
+
+    .qr-surface {
+      fill: var(--surface);
+    }
+
+    .qr-ink {
+      fill: var(--fg);
+    }
+
+    .phone-preview {
+      position: absolute;
+      width: 106px;
+      height: 190px;
+      right: -12px;
+      bottom: -66px;
+      padding: 7px;
+      border: 3px solid var(--surface);
+      border-radius: 21px;
+      background: var(--fg);
+      transform: rotate(5deg);
+      box-shadow: 0 14px 28px var(--shadow-deep);
+    }
+
+    .phone-camera {
+      width: 32px;
+      height: 5px;
+      margin: 0 auto 6px;
+      border-radius: 8px;
+      background: var(--phone-muted);
+    }
+
+    .phone-screen {
+      height: calc(100% - 11px);
+      overflow: hidden;
+      padding: 8px 6px;
+      border-radius: 12px;
+      background: var(--surface);
+      color: var(--fg);
+      font-size: 7px;
+      line-height: 1.3;
+    }
+
+    .phone-screen strong {
+      display: block;
+      margin: 5px 0;
+      font: 800 10px/1.05 var(--font-display);
+    }
+
+    .phone-screen span {
+      display: block;
+      margin: 5px 0;
+      padding: 5px 3px;
+      border-radius: 4px;
+      background: var(--warn-bg);
+      font-weight: 700;
+    }
+
+    .phone-caption {
+      position: absolute;
+      right: 0;
+      bottom: -96px;
+      max-width: 230px;
+      color: var(--coral-soft);
+      font: 700 1.25rem/1.2 var(--font-hand);
+      text-align: right;
+      transform: rotate(-3deg);
+    }
+
+    .demo-label {
+      align-self: flex-start;
+      padding: 5px 11px;
+      border-radius: 7px;
+      background: var(--focus);
+      color: var(--fg);
+      font-size: max(14px, .78rem);
+      font-weight: 800;
+      letter-spacing: .055em;
+    }
+
+    .settings {
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: var(--surface-muted);
+    }
+
+    .settings h3 {
+      margin: 0 0 10px;
+      font: 700 1rem/1.3 var(--font-display);
+    }
+
+    .tools .seg {
+      border-color: var(--muted);
+    }
+
+    .tools .seg button {
+      min-height: 56px;
+      font-size: max(14px, .7em);
+    }
+
+    .tools .seg button[aria-pressed="true"] {
+      background: var(--fg);
+      color: var(--surface);
+    }
+
+    .product-panel {
+      scroll-margin-top: 20px;
+      scroll-margin-bottom: 120px;
+    }
+
+    .warning-title {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .warning-title svg {
+      width: 30px;
+      height: 30px;
+      flex: none;
+    }
+
+    .warning-badge {
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      padding: 3px 11px;
+      border: 2px solid var(--fg);
+      border-radius: 999px;
+      background: var(--focus);
+      color: var(--fg);
+      font-size: max(14px, .76rem);
+      font-weight: 800;
+    }
+
+    .qr-mark svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .wave-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+      width: 38px;
+      height: 30px;
+      flex: none;
+    }
+
+    .wave-icon i {
+      display: block;
+      width: 4px;
+      height: 10px;
+      border-radius: 9px;
+      background: currentColor;
+    }
+
+    .wave-icon i:nth-child(2),
+    .wave-icon i:nth-child(4) {
+      height: 18px;
+    }
+
+    .wave-icon i:nth-child(3) {
+      height: 25px;
+    }
+
+    .audio-dock {
+      position: fixed;
+      z-index: 20;
+      left: 50%;
+      right: auto;
+      bottom: 0;
+      width: min(100%, 900px);
+      transform: translateX(-50%);
+      display: grid;
+      grid-template-columns: minmax(130px, 1.7fr) 1fr 1fr;
+      gap: 9px;
+      padding: 10px max(16px, env(safe-area-inset-right)) calc(10px + env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+      border-top: 1px solid var(--dock-line);
+      background: var(--dock-bg);
+      backdrop-filter: blur(14px);
+    }
+
+    .audio-dock button {
+      min-width: 0;
+      min-height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      padding: 8px 10px;
+      border: 2px solid var(--surface);
+      border-radius: 14px;
+      background: var(--solution-bg);
+      color: var(--surface);
+      font: 700 .95rem/1.2 var(--font-body);
+    }
+
+    .audio-dock #dock-listen {
+      border-color: var(--accent);
+      background: var(--accent);
+      color: var(--on-accent);
+      font-family: var(--font-display);
+    }
+
+    .audio-dock .listen-icon svg {
+      display: block;
+      width: 1em;
+      height: 1em;
+    }
+
+    .audio-dock button:disabled {
+      border-color: var(--line);
+      background: var(--disabled-bg);
+      color: var(--disabled-fg);
+      cursor: not-allowed;
+    }
+
+    .audio-dock .wave-icon {
+      display: none;
+      color: currentColor;
+    }
+
+    .audio-dock.is-speaking .wave-icon {
+      display: inline-flex;
+    }
+
+    .audio-dock.is-speaking #dock-listen .listen-icon {
+      display: none;
+    }
+
+    .audio-dock.is-speaking:not(.is-paused) .wave-icon i {
+      animation: sound-wave .8s ease-in-out infinite alternate;
+    }
+
+    .audio-dock.is-speaking:not(.is-paused) .wave-icon i:nth-child(2) {
+      animation-delay: .16s;
+    }
+
+    .audio-dock.is-speaking:not(.is-paused) .wave-icon i:nth-child(3) {
+      animation-delay: .3s;
+    }
+
+    .audio-dock.is-speaking:not(.is-paused) .wave-icon i:nth-child(4) {
+      animation-delay: .08s;
+    }
+
+    .listen .wave-icon {
+      display: none;
+    }
+
+    body.is-speaking .listen .wave-icon {
+      display: inline-flex;
+    }
+
+    body.is-speaking .listen .listen-icon {
+      display: none;
+    }
+
+    body.is-speaking:not(.is-paused) .listen .wave-icon i {
+      animation: sound-wave .8s ease-in-out infinite alternate;
+    }
+
+    body.is-speaking:not(.is-paused) .listen .wave-icon i:nth-child(2) {
+      animation-delay: .16s;
+    }
+
+    body.is-speaking:not(.is-paused) .listen .wave-icon i:nth-child(3) {
+      animation-delay: .3s;
+    }
+
+    body.is-speaking:not(.is-paused) .listen .wave-icon i:nth-child(4) {
+      animation-delay: .08s;
+    }
+
+    @keyframes sound-wave {
+      to {
+        transform: scaleY(.45);
+      }
+    }
+
+    .solution-note {
+      margin: -5px 0 0;
+      color: var(--coral-soft);
+      font: 700 max(1.3rem, 1em)/1.2 var(--font-hand);
+      text-align: center;
+    }
+
+    .footer-callout {
+      color: var(--surface);
+      font: 800 clamp(1.5rem, 3vw, 2.2rem)/1.15 var(--font-display);
+    }
+
+    .footer-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .footer-chips span {
+      padding: 7px 12px;
+      border: 1px solid var(--footer-line);
+      border-radius: 99px;
+      color: var(--surface);
+      font-size: max(14px, .78rem);
+    }
+
+    .team-name {
+      margin: 0;
+      color: var(--surface);
+      font-weight: 700;
+    }
+
+    .powered {
+      margin: 0;
+      color: var(--sage-light);
+      font-size: max(14px, .8rem);
+    }
+
+    @media (min-width: 768px) {
+
+      .page-head,
+      .wrap {
+        padding-left: 32px;
+        padding-right: 32px;
+      }
+
+      .intro-grid {
+        grid-template-columns: minmax(0, .88fr) minmax(0, 1.12fr);
+      }
+
+      .tab {
+        min-height: 300px;
+      }
+
+      .bottle-art {
+        width: min(100%, 175px);
+        height: 230px;
+      }
+
+      .phone-preview,
+      .phone-caption {
+        display: none;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(260px, .75fr);
+        column-gap: 22px;
+        align-items: center;
+      }
+
+      .hero>.demo-label,
+      .hero>.eyebrow,
+      .hero>h2,
+      .hero>.sub,
+      .hero>.symbol-row,
+      .hero>.status {
+        grid-column: 1;
+      }
+
+      .hero>.listen,
+      .hero>.settings {
+        grid-column: 2;
+      }
+
+      .hero>.listen {
+        grid-row: 2 / span 2;
+      }
+
+      .hero>.settings {
+        grid-row: 4 / span 3;
+      }
+    }
+
+    @media (min-width: 1000px) {
+      .visual-stage {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 114px;
+        grid-template-rows: 1fr auto;
+        align-items: center;
+        column-gap: 12px;
+      }
+
+      .tabs {
+        grid-column: 1;
+        grid-row: 1 / span 2;
+        padding: 0;
+        gap: 8px;
+      }
+
+      .tab {
+        min-height: 300px;
+        padding-left: 3px;
+        padding-right: 3px;
+      }
+
+      .bottle-art {
+        width: min(100%, 155px);
+        height: 220px;
+      }
+
+      .phone-preview {
+        position: relative;
+        display: block;
+        grid-column: 2;
+        grid-row: 1;
+        justify-self: center;
+        align-self: end;
+        right: auto;
+        bottom: auto;
+        width: 96px;
+        height: 174px;
+        transform: rotate(5deg);
+      }
+
+      .phone-caption {
+        position: static;
+        display: block;
+        grid-column: 2;
+        grid-row: 2;
+        justify-self: center;
+        max-width: 132px;
+        font-size: 1.08rem;
+        text-align: center;
+        transform: rotate(-2deg);
+      }
+    }
+
+    @media (max-width: 767px) {
+      body {
+        padding-top: 10px;
+      }
+
+      .page-head {
+        margin: 0 4px;
+      }
+
+      .page-head .wordmark {
+        font-size: .88rem;
+      }
+
+      .wrap {
+        gap: 15px;
+        padding-bottom: 100px;
+      }
+
+      .intro-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        min-height: 0;
+        align-items: stretch;
+      }
+
+      .poster-hero {
+        gap: 3px;
+        padding: 2px 0 0;
+      }
+
+      .campaign-tag {
+        display: none;
+      }
+
+      .poster-hero h1 {
+        max-width: none;
+        font-size: clamp(2rem, 8.5vw, 2.8rem);
+        letter-spacing: -.04em;
+        line-height: 1;
+      }
+
+      .script-line {
+        font-size: 1.4rem;
+      }
+
+      .poster-note {
+        max-width: 100%;
+        margin-top: 0;
+        padding: 5px 10px;
+        font-size: 1.05rem;
+      }
+
+      .visual-stage {
+        display: block;
+        width: 100%;
+      }
+
+      .tabs {
+        gap: 6px;
+        padding-top: 12px;
+      }
+
+      .tab {
+        min-height: 158px;
+        height: auto;
+        padding: 20px 4px 9px;
+        border-radius: 17px;
+        font-size: max(14px, .75rem);
+      }
+
+      .tab[aria-selected="true"] {
+        transform: translateY(-5px);
+      }
+
+      .bottle-art {
+        width: min(100%, 94px);
+        height: 126px;
+      }
+
+      .phone-preview,
+      .phone-caption {
+        display: none;
+      }
+
+      .product-panel>.listen {
+        display: none;
+      }
+
+      .hero {
+        padding: 16px;
+        gap: 10px;
+        border-radius: 20px;
+      }
+
+      .hero h2 {
+        font-size: 1.45em;
+      }
+
+      .eyebrow {
+        font-size: max(14px, .75rem);
+      }
+
+      .symbol-row {
+        padding: 8px 10px;
+      }
+
+      .listen {
+        min-height: 60px;
+        padding: 8px 12px;
+        font-size: 1em;
+      }
+
+      .settings {
+        padding: 11px;
+      }
+
+      .tools {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .tools .group {
+        width: 100%;
+        flex: auto;
+        justify-content: space-between;
+        gap: 8px;
+      }
+
+      .tools .lbl {
+        font-size: max(14px, .82rem);
+      }
+
+      .tools .seg button {
+        min-width: 44px;
+        padding: 0 8px;
+      }
+
+      .solution {
+        display: grid;
+        grid-template-columns: 60px minmax(0, 1fr);
+        grid-template-rows: auto auto;
+        align-items: center;
+        column-gap: 12px;
+        min-height: 120px;
+        padding: 14px;
+      }
+
+      .solution strong,
+      .solution p {
+        grid-column: 2;
+      }
+
+      .solution .glyph,
+      .solution .qr-mark,
+      .solution>.wave-icon {
+        grid-column: 1;
+        grid-row: 1 / span 2;
+        margin-top: 0;
+      }
+
+      .audio-dock {
+        width: calc(100% - max(10px, env(safe-area-inset-left, 0px)) - max(10px, env(safe-area-inset-right, 0px)));
+        grid-template-columns: minmax(112px, 1.4fr) 1fr 1fr;
+        gap: 6px;
+        padding-left: max(10px, env(safe-area-inset-left));
+        padding-right: max(10px, env(safe-area-inset-right));
+      }
+
+      .audio-dock button {
+        min-height: 58px;
+        padding: 7px 5px;
+        font-size: 1rem;
+      }
+
+      .audio-dock .wave-icon {
+        width: 24px;
+      }
+
+      footer {
+        box-sizing: border-box;
+        width: calc(100% + max(16px, env(safe-area-inset-left, 0px)) + max(16px, env(safe-area-inset-right, 0px)));
+        margin-left: calc(-1 * max(16px, env(safe-area-inset-left, 0px)));
+        margin-right: calc(-1 * max(16px, env(safe-area-inset-right, 0px)));
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      .audio-dock.is-speaking .wave-icon i,
+      body.is-speaking .listen .wave-icon i {
+        animation: none !important;
+      }
+    }
+
+    .shower-bar { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--line); }
+    .shower-toggle-btn { width: 100%; min-height: 56px; display: flex; align-items: center; justify-content: center; gap: .6em; padding: .6em 1em; border: 2px solid var(--accent); border-radius: 14px; background: rgba(240,138,108,.12); color: var(--fg); font: 700 1em/1.2 var(--font-body); cursor: pointer; }
+    .shower-toggle-btn:hover { background: rgba(240,138,108,.22); }
+    .shower-fab { position: fixed; z-index: 30; right: max(16px,env(safe-area-inset-right)); bottom: calc(92px + env(safe-area-inset-bottom)); display: flex; align-items: center; gap: .55em; min-height: 56px; padding: .55em .9em; border: 1px solid rgba(242,217,139,.75); border-radius: 999px; background: #0c2028; color: #f7eedc; font: 700 max(14px,.875em)/1.2 var(--font-body); cursor: pointer; box-shadow: 0 8px 24px rgba(0,0,0,.32); }
+    .shower-fab svg { width: 22px; height: 22px; flex: none; }
+    .shower-fab:hover { background: #183541; }
+    body.has-music-docked .shower-fab { display: none; }
+    .shower-modal { position: fixed; z-index: 100; inset: 0; isolation: isolate; display: flex; justify-content: center; overflow-y: auto; padding: max(12px,env(safe-area-inset-top)) max(16px,env(safe-area-inset-right)) max(16px,env(safe-area-inset-bottom)) max(16px,env(safe-area-inset-left)); background: #071321; color: #f7eedc; font-family: var(--font-body); font-size: var(--fs); line-height: 1.35; opacity: 0; visibility: hidden; transition: opacity .25s ease,visibility .25s ease; }
+    .shower-modal[hidden] { display: none; }
+    .shower-modal.is-active { opacity: 1; visibility: visible; }
+    .shower-space-canvas { position: fixed; z-index: 0; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+    .shower-container { position: relative; z-index: 1; width: min(100%,520px); margin: auto; display: flex; flex-direction: column; gap: .75em; }
+    .shower-topbar { display: flex; align-items: center; gap: .55em; min-height: 56px; }
+    .shower-brand-pill { display: inline-flex; align-items: center; gap: .45em; min-width: 0; margin-right: auto; color: #f2d98b; font-size: max(14px,.875em); font-weight: 700; }
+    .shower-brand-pill svg { width: 20px; height: 20px; flex: none; }
+    .shower-lang-controls { display: inline-flex; gap: 2px; padding: 3px; border: 1px solid rgba(247,238,220,.3); border-radius: 999px; background: rgba(7,19,33,.72); }
+    .shower-icon-btn,.shower-lang-btn,.track-control,.sleep-timer-btn,.shower-main-play-btn { display: inline-grid; place-items: center; min-width: 52px; min-height: 52px; padding: .45em; border: 0; border-radius: 50%; background: transparent; color: #f7eedc; font: 600 max(14px,.875em)/1.2 var(--font-body); cursor: pointer; transition: background .16s ease,transform .16s ease; }
+    .shower-lang-btn { min-width: 48px; min-height: 44px; padding: .35em .6em; border-radius: 999px; color: #d6d9d4; }
+    .shower-lang-btn[aria-pressed="true"] { background: #f2d98b; color: #10232a; }
+    .shower-icon-btn:hover,.track-control:hover,.sleep-timer-btn:hover { background: rgba(255,255,255,.12); }
+    .shower-icon-btn:active,.track-control:active,.sleep-timer-btn:active,.shower-main-play-btn:active { transform: scale(.94); }
+    .shower-icon-btn svg,.track-control svg,.sleep-timer-btn svg { width: 24px; height: 24px; }
+    .shower-headings { text-align: center; }
+    .shower-title { margin: 0; color: #f7eedc; font-size: max(22px,1.25em); font-weight: 700; line-height: 1.2; }
+    .shower-subtitle { margin: .2em 0 0; color: #d7dcd9; font-size: max(14px,.875em); line-height: 1.3; }
+    .album-stage { display: flex; justify-content: center; padding: .25em 0; }
+    .album-art { --cover-a: #526f70; --cover-b: #203d49; position: relative; isolation: isolate; display: grid; place-items: center; width: min(100%,320px,76vw); aspect-ratio: 1; overflow: hidden; border: 1px solid rgba(247,238,220,.2); border-radius: 20px; background: radial-gradient(ellipse at 70% 22%,rgba(242,217,139,.32),transparent 25%), radial-gradient(ellipse at 28% 78%,rgba(111,157,150,.36),transparent 38%), linear-gradient(145deg,var(--cover-a),var(--cover-b) 56%,#101c2a); box-shadow: 0 22px 50px rgba(0,0,0,.38); transform: scale(.94); transition: transform .3s ease; }
+    .album-art[data-lang="en"] { --cover-a: #756456; --cover-b: #263d4c; }
+    .shower-modal.is-playing .album-art { transform: scale(1); }
+    .cover-orbit { position: absolute; width: 72%; aspect-ratio: 1; border: 1px solid rgba(247,238,220,.48); border-radius: 50%; transform: rotate(-28deg) scaleY(.42); box-shadow: 0 0 32px rgba(169,198,174,.18); }
+    .cover-orbit::before,.cover-orbit::after { content: ""; position: absolute; width: 8px; height: 8px; border-radius: 50%; background: #f2d98b; box-shadow: 0 0 14px rgba(242,217,139,.5); }
+    .cover-orbit::before { top: 10%; left: 18%; }
+    .cover-orbit::after { right: 7%; bottom: 18%; width: 5px; height: 5px; }
+    .cover-art-copy { position: absolute; left: 9%; right: 9%; bottom: 8%; color: #f7eedc; text-align: left; text-shadow: 0 2px 12px rgba(0,0,0,.45); }
+    .cover-art-kicker { font-size: max(14px,.875em); font-weight: 600; }
+    .track-meta { display: flex; align-items: center; justify-content: space-between; gap: .7em; min-width: 0; margin-top: .1em; text-align: left; }
+    .track-copy { flex: 1; min-width: 0; }
+    .track-meta .track-title { display: block; overflow-wrap: anywhere; color: #fff; font-size: max(22px,1.3em); font-weight: 700; line-height: 1.2; }
+    .track-meta .track-artist { display: block; margin-top: .15em; color: #d2d7d5; font-size: max(16px,1em); line-height: 1.25; }
+    .track-like { flex: none; color: #f08a6c; }
+    .track-like svg { width: 24px; height: 24px; }
+    .shower-now-playing { display: flex; align-items: center; gap: .55em; min-height: 24px; }
+    .status-indicator-dot { width: 9px; height: 9px; flex: none; border-radius: 50%; background: #a9c6ae; }
+    .status-indicator-dot.is-playing { background: #f2d98b; box-shadow: 0 0 12px rgba(242,217,139,.45); }
+    .shower-status-text { min-height: 1.25em; margin: 0; color: #e2e8e4; font-size: max(14px,.875em); }
+    .shower-status-text[data-error="true"] { color: #ffd2c5; }
+    .progress-block { width: 100%; }
+    .progress-control { position: relative; min-height: 44px; display: flex; align-items: center; }
+    .progress-slider { position: relative; z-index: 1; width: 100%; height: 44px; margin: 0; appearance: none; background: transparent; cursor: pointer; touch-action: pan-y; }
+    .progress-slider:disabled { cursor: not-allowed; opacity: .6; }
+    .progress-slider::-webkit-slider-runnable-track { height: 4px; border-radius: 99px; background: linear-gradient(to right,#fff 0 var(--progress,0%),rgba(255,255,255,.3) var(--progress,0%) 100%); }
+    .progress-slider::-moz-range-track { height: 4px; border-radius: 99px; background: rgba(255,255,255,.3); }
+    .progress-slider::-moz-range-progress { height: 4px; border-radius: 99px; background: #fff; }
+    .progress-slider::-webkit-slider-thumb { width: 14px; height: 14px; margin-top: -5px; appearance: none; border: 2px solid #071321; border-radius: 50%; background: #fff; }
+    .progress-slider::-moz-range-thumb { width: 14px; height: 14px; border: 2px solid #071321; border-radius: 50%; background: #fff; }
+    .progress-streak { position: absolute; z-index: 2; top: 50%; left: 0; width: 36px; height: 2px; pointer-events: none; background: linear-gradient(90deg,transparent,#fff,transparent); opacity: .8; animation: progress-star-drift 8s linear infinite; }
+    .progress-streak::after { content: ""; position: absolute; top: 50%; right: 2px; width: 7px; height: 7px; border-radius: 50%; background: #fff; box-shadow: 0 0 8px rgba(255,255,255,.7); transform: translateY(-50%); }
+    @keyframes progress-star-drift { 0% { left: 0; transform: translateY(-50%); opacity: 0; } 10% { opacity: .8; } 90% { opacity: .8; } 100% { left: calc(100% - 36px); transform: translateY(-50%); opacity: 0; } }
+    .progress-times { display: flex; justify-content: space-between; color: #d0d0d0; font-size: max(14px,.875em); font-variant-numeric: tabular-nums; line-height: 1.2; }
+    .track-controls { display: flex; align-items: center; justify-content: center; gap: clamp(.5em,5vw,1.5em); }
+    .track-control { color: #e5e5e5; }
+    .track-control:disabled { opacity: .45; cursor: not-allowed; }
+    .shower-main-play-btn { width: 68px; height: 68px; background: #f2d98b; color: #10232a; box-shadow: 0 8px 26px rgba(0,0,0,.28); }
+    .shower-main-play-btn:hover { background: #f7e7b5; }
+    .shower-main-play-btn svg { width: 28px; height: 28px; }
+    .sleep-timer-btn { display: flex; gap: .55em; width: max-content; max-width: 100%; margin: 0 auto; border: 1px solid rgba(247,238,220,.4); border-radius: 999px; font-size: max(14px,.875em); }
+    .sleep-timer-btn[aria-pressed="true"] { border-color: #f2d98b; background: rgba(242,217,139,.14); }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+    .shower-modal :focus-visible,.audio-dock #music-mini-player :focus-visible,.shower-toggle-btn:focus-visible,.shower-fab:focus-visible { outline: 3px solid #f2d98b; outline-offset: 3px; box-shadow: none; }
+    .audio-dock.has-music { grid-template-columns: repeat(3,minmax(0,1fr)); }
+    #music-mini-player { grid-column: 1/-1; min-width: 0; display: flex; align-items: center; gap: .6em; padding: .25em .5em; border: 1px solid var(--dock-line); border-radius: 12px; background: var(--dock-bg); color: var(--surface); }
+    #music-mini-player[hidden] { display: none; }
+    .mini-track-copy { flex: 1; min-width: 0; }
+    .mini-track-label,#mini-track-title { display: block; font-size: max(14px,.875em); line-height: 1.2; }
+    .mini-track-label { color: var(--muted); }
+    #mini-track-title { overflow: hidden; font-weight: 700; text-overflow: ellipsis; white-space: nowrap; }
+    .audio-dock #music-mini-player button { min-width: 48px; min-height: 48px; padding: .4em; border-radius: 50%; }
+    .audio-dock #music-mini-player button svg { width: 22px; height: 22px; }
+    @media (max-width:380px) { .shower-modal { padding-left: 12px; padding-right: 12px; } .shower-container { gap: .6em; } .album-art { width: min(100%,292px,76vw); } .shower-brand-pill { font-size: max(14px,.82em); } .shower-lang-btn { min-width: 44px; } .shower-icon-btn { min-width: 48px; } .track-controls { gap: .35em; } }
+    @media (max-width:480px) and (max-height:700px) { .shower-container { gap: .35em; } .album-stage { padding: 0; } .album-art { width: min(100%,200px,58vw); } }
+    @media (prefers-reduced-motion:reduce) { .shower-modal,.album-art,.shower-icon-btn,.track-control,.shower-main-play-btn,.shower-fab { transition: none; } .progress-streak { animation: none; left: 55%; } }
+  </style>
+
+  <svg class="svg-defs" aria-hidden="true" focusable="false">
+    <symbol id="qr-pattern" viewBox="0 0 21 21">
+      <rect class="qr-surface" width="21" height="21" />
+      <path class="qr-ink"
+        d="M8 1h1v1H8zM10 1h1v1h-1zM8 3h1v1H8zM10 4h1v1h-1zM8 6h1v1H8zM7 8h1v1H7zM9 8h1v1H9zM11 8h1v1h-1zM13 8h1v1h-1zM15 8h1v1h-1zM17 8h1v1h-1zM19 8h1v1h-1zM8 10h1v1H8zM10 10h1v1h-1zM12 10h1v1h-1zM14 10h1v1h-1zM17 10h1v1h-1zM19 10h1v1h-1zM7 12h1v1H7zM9 12h1v1H9zM11 12h1v1h-1zM15 12h1v1h-1zM17 12h1v1h-1zM19 12h1v1h-1zM8 14h1v1H8zM10 14h1v1h-1zM12 14h1v1h-1zM14 14h1v1h-1zM16 14h1v1h-1zM18 14h1v1h-1zM8 16h1v1H8zM11 16h1v1h-1zM13 16h1v1h-1zM15 16h1v1h-1zM17 16h1v1h-1zM19 16h1v1h-1zM7 18h1v1H7zM9 18h1v1H9zM12 18h1v1h-1zM14 18h1v1h-1zM16 18h1v1h-1zM18 18h1v1h-1zM8 20h1v1H8zM10 20h1v1h-1zM12 20h1v1h-1zM15 20h1v1h-1zM17 20h1v1h-1zM19 20h1v1h-1z" />
+      <path class="qr-ink" d="M0 0h7v7H0zM14 0h7v7h-7zM0 14h7v7H0z" />
+      <path class="qr-surface" d="M1 1h5v5H1zM15 1h5v5h-5zM1 15h5v5H1z" />
+      <path class="qr-ink" d="M2 2h3v3H2zM16 2h3v3h-3zM2 16h3v3H2z" />
+    </symbol>
+  </svg>
+  <a href="#listen-all" class="skip-link" id="skip-link">Skip to Listen</a>
+  <header class="page-head">
+    <div class="wordmark">Feel the Product<span>.</span><small>INCLUSIVE PACKAGING · SMART TECHNOLOGY</small></div>
+    <div class="top">
+      <div class="seg" role="group" aria-label="Language / Ngôn ngữ">
+        <button type="button" id="lang-vi" aria-pressed="true" lang="vi">VI</button>
+        <button type="button" id="lang-en" aria-pressed="false" lang="en">EN</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <div class="intro-grid">
+      <div class="poster-hero">
+        <p class="campaign-tag" id="campaign-tag">CHĂM SÓC CÁ NHÂN · PERSONAL CARE</p>
+        <h1>Feel the Product<span>.</span></h1>
+        <p class="script-line">Touch. Scan. Listen.</p>
+        <p class="poster-note" id="poster-note">Bao bì quen thuộc. Trải nghiệm mới.</p>
+      </div>
+      <div class="visual-stage">
+        <div class="tabs" role="tablist" id="tabs" aria-label="Chọn sản phẩm"></div>
+        <div class="phone-preview" aria-hidden="true">
+          <div class="phone-camera"></div>
+          <div class="phone-screen"><small>FEEL THE PRODUCT</small><strong id="phone-product">Dầu gội Trà
+              xanh</strong><span id="phone-listen">Nghe thông tin sản phẩm</span><small id="phone-sections">Thành phần ·
+              Cách dùng</small></div>
+        </div>
+        <p class="phone-caption" id="phone-caption">Chỉ cần quét và nghe. Không cần cài app!</p>
+      </div>
+    </div>
+
+    <main class="main-content" id="main-content">
+      <section class="hero sec product-panel" id="product-panel" role="tabpanel" tabindex="-1"
+        aria-labelledby="tab-shampoo">
+        <span class="demo-label" id="demo-label">BẢN DEMO · DỮ LIỆU MẪU</span>
+        <div class="eyebrow" id="brandline"></div>
+        <h2 id="pname"></h2>
+        <p class="sub" id="psub"></p>
+        <div class="symbol-row"><span id="hero-glyph"></span>
+          <p id="symbol-text"></p>
+        </div>
+        <button type="button" class="listen" id="listen-all">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path
+              d="M3 9v6h4l5 4V5L7 9H3zm13.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z" />
+          </svg>
+          <span class="listen-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M8 5v14l11-7z" />
+            </svg></span><span class="wave-icon" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+          <span class="listen-label" id="listen-label"></span>
+        </button>
+        <p class="status" id="status" role="status" aria-live="polite"></p>
+        <p class="voice-warning" id="voice-warning" role="alert" hidden></p>
+        <div class="settings">
+          <h3 id="settings-title">Cài đặt nghe</h3>
+          <div class="tools">
+            <div class="group" role="group" aria-labelledby="speed-lbl">
+              <span class="lbl" id="speed-lbl"></span>
+              <div class="seg">
+                <button type="button" data-rate="0.8" aria-pressed="false" id="rate-slow"></button>
+                <button type="button" data-rate="1" aria-pressed="true" id="rate-normal"></button>
+                <button type="button" data-rate="1.25" aria-pressed="false" id="rate-fast"></button>
+              </div>
+            </div>
+            <div class="group" role="group" aria-labelledby="size-lbl">
+              <span class="lbl" id="size-lbl"></span>
+              <div class="seg">
+                <button type="button" data-size="sm" aria-pressed="false" aria-label="Small">A−</button>
+                <button type="button" data-size="md" aria-pressed="true" aria-label="Medium">A</button>
+                <button type="button" data-size="lg" aria-pressed="false" aria-label="Large">A+</button>
+                <button type="button" data-size="xl" aria-pressed="false" aria-label="Extra large">A++</button>
+              </div>
+            </div>
+          </div>
+          <div class="shower-bar">
+            <button type="button" class="shower-toggle-btn" id="shower-toggle-btn">
+              <span id="shower-btn-label">Bật Shower Chill Mode</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <div id="sections" class="information-sections" aria-label="Thông tin sản phẩm"></div>
+
+      <section class="solutions" id="solutions" aria-label="Three layers of accessibility">
+        <article class="solution"><strong id="step-touch">01 · Chạm</strong>
+          <p id="touch-copy"></p><span id="touch-glyph"></span>
+        </article>
+        <article class="solution"><strong id="step-scan">02 · Quét</strong>
+          <p id="scan-copy"></p><span class="qr-mark" id="solution-qr" aria-hidden="true"></span>
+        </article>
+        <article class="solution"><strong class="solution-listen" id="step-listen">03 · Nghe</strong>
+          <p id="listen-copy"></p><span class="wave-icon" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+        </article>
+      </section>
+      <p class="solution-note" id="solution-note">Chỉ cần quét và nghe. Không cần cài app!</p>
+    </main>
+
+    <footer>
+      <div class="footer-callout" id="footer-callout">Thêm hòa nhập trong từng ngày.</div>
+      <div class="footer-chips"><span id="footer-personal" lang="en">Beauty &amp; personal care</span><span
+          id="footer-hotels" lang="en">Hotels &amp; hospitality</span><span id="footer-next" lang="en">Next: medicines,
+          packaged food</span></div>
+      <p class="team-name" id="team-name">Khánh Thy · Nam Phương · Hồng Phúc</p>
+      <p class="powered" lang="en">Powered by Feel the Product</p>
+    </footer>
+  </div>
+
+
+  <button type="button" class="shower-fab" id="shower-fab" aria-label="Mở Shower Chill" title="Shower Chill">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 13a8 8 0 0 1 16 0M12 5v2M5.5 9.5l1.4 1.4M18.5 9.5l-1.4 1.4"/><path d="M7 16h10M9 19h6"/></svg><span id="shower-fab-label">Shower Chill</span>
+  </button>
+  <div class="shower-modal" id="shower-modal" role="dialog" aria-modal="true" aria-label="Shower Chill" aria-hidden="true" hidden>
+    <canvas class="shower-space-canvas" id="shower-space-canvas" aria-hidden="true"></canvas>
+    <div class="shower-container">
+      <header class="shower-topbar">
+        <div class="shower-brand-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 13a8 8 0 0 1 16 0M12 5v2M5.5 9.5l1.4 1.4M18.5 9.5l-1.4 1.4"/><path d="M7 16h10M9 19h6"/></svg><span id="shower-badge">Shower Chill</span></div>
+        <div class="shower-lang-controls" role="group" aria-label="Ngôn ngữ bài hát"><button type="button" class="shower-lang-btn" data-shower-lang="vi" aria-pressed="true" lang="vi">VI</button><button type="button" class="shower-lang-btn" data-shower-lang="en" aria-pressed="false" lang="en">EN</button></div>
+        <button type="button" class="shower-icon-btn" id="shower-close-btn" aria-label="Thu nhỏ trình phát" title="Thu nhỏ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
+      </header>
+      <div class="shower-headings"><h2 class="shower-title" id="shower-title">Thư giãn trong làn nước</h2><p class="shower-subtitle" id="shower-subtitle">Âm nhạc tuyển chọn giúp bạn thư thái khi tắm</p></div>
+      <div class="album-stage"><div class="album-art" id="album-art" data-lang="vi" aria-hidden="true"><span class="cover-orbit" aria-hidden="true"></span><span class="cover-art-copy" aria-hidden="true"><span class="cover-art-kicker" id="cover-kicker">Một chút thư giãn</span></span></div></div>
+      <div class="track-meta"><div class="track-copy"><span class="track-title" id="music-track-title">Có nơi nào ổn không</span><span class="track-artist" id="music-track-artist">Đạt G</span></div><span class="track-like" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"/></svg></span></div>
+      <div class="shower-now-playing"><span class="status-indicator-dot" id="music-indicator" aria-hidden="true"></span><p class="shower-status-text" id="shower-status-text" role="status" aria-live="polite">Sẵn sàng phát</p></div>
+      <div class="progress-block"><label class="sr-only" for="music-progress" id="music-progress-label">Tiến trình bài hát</label><div class="progress-control"><span class="progress-streak" aria-hidden="true"></span><input type="range" class="progress-slider" id="music-progress" min="0" max="1000" value="0" step="1" disabled aria-valuetext="00:00 / --:--"></div><div class="progress-times" aria-hidden="true"><span id="music-current-time">00:00</span><span id="music-duration">--:--</span></div></div>
+      <div class="track-controls" role="group" aria-label="Điều khiển nhạc">
+        <button type="button" class="track-control" id="music-previous-btn" aria-label="Lùi 10 giây" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 4 12l7 7V5Zm9 0-7 7 7 7V5Z"/><path d="M3 4v4"/></svg></button>
+        <button type="button" class="shower-main-play-btn" id="shower-modal-play-btn" aria-label="Phát nhạc" title="Phát nhạc"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path id="music-play-icon" d="M8 5v14l11-7z"/><path id="music-pause-icon" d="M6 5h4v14H6zm8 0h4v14h-4z" style="display:none"/></svg></button>
+        <button type="button" class="track-control" id="music-next-btn" aria-label="Tua tới 10 giây" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m13 5 7 7-7 7V5ZM4 5l7 7-7 7V5Z"/><path d="M21 4v4"/></svg></button>
+      </div>
+      <button type="button" class="sleep-timer-btn" id="sleep-timer-btn" aria-pressed="false" aria-label="Hẹn giờ tắt sau 15 phút"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 1.5M9 2h6"/></svg><span id="sleep-timer-label">Hẹn giờ tắt · 15 phút</span></button>
+    </div>
+  </div>
+  <nav class="audio-dock" id="audio-dock" role="region" aria-label="Điều khiển đọc">
+    <div id="music-mini-player" hidden><div class="mini-track-copy"><span class="mini-track-label" id="mini-track-label">Đang phát</span><span id="mini-track-title">Có nơi nào ổn không · Đạt G</span></div><button type="button" id="mini-music-toggle" aria-label="Tạm dừng nhạc"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path id="mini-play-icon" d="M8 5v14l11-7z" style="display:none"/><path id="mini-pause-icon" d="M6 5h4v14H6zm8 0h4v14h-4z"/></svg></button><button type="button" id="mini-music-open" aria-label="Mở trình phát nhạc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button></div>
+    <button type="button" id="dock-listen"><span class="listen-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span><span class="wave-icon" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span><span id="dock-listen-label">Nghe</span></button><button type="button" id="pause-btn" disabled></button><button type="button" id="stop-btn" disabled></button>
+  </nav>
+  <script>
+    (function () {
+      var canvas = document.getElementById("shower-space-canvas");
+      var context = canvas && canvas.getContext("2d");
+      if (!canvas || !context) return;
+      var motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+      var width = 1, height = 1, ratio = 1, stars = [], brushStrokes = [], meteors = [];
+      var running = false, frameId = 0, previousTime = 0, nextMeteorAt = 0;
+      var palette = ["#2D4669", "#3B5678", "#526E86", "#718995", "#87969A", "#B1A67D"];
+      var whirlpools = [[.24, .3, 1], [.57, .58, -1], [.91, .27, 1], [.22, .84, -1]];
+      function random(min, max) { return min + Math.random() * (max - min); }
+      function resetScene() {
+        stars = []; brushStrokes = [];
+        var starCount = Math.min(260, Math.max(110, Math.round(width * height / 4600)));
+        for (var i = 0; i < starCount; i++) stars.push({ x: Math.random() * width, y: Math.random() * height, r: random(.4, 1.35), alpha: random(.08, .23), phase: random(0, 6.28), twinkle: random(.25, .75), fall: random(2, 7), drift: random(-2, 2), color: i % 5 === 0 ? "#C9BC8A" : "#B9C9D0" });
+        var strokeCount = Math.min(1900, Math.max(850, Math.round(width * height / 780)));
+        for (var s = 0; s < strokeCount; s++) {
+          var swirl = Math.floor(Math.random() * whirlpools.length);
+          var radius = Math.pow(Math.random(), .92) * .62 + .035;
+          var direction = whirlpools[swirl][2];
+          brushStrokes.push({
+            swirl: swirl, radius: radius, theta: random(0, Math.PI * 2) + radius * 9 * direction,
+            length: random(18, Math.max(28, Math.min(74, width * .09))),
+            thickness: random(1, 3.2), alpha: random(.065, .16),
+            phase: random(0, 6.28), speed: random(.035, .095),
+            curve: random(-.28, .28), direction: direction, color: palette[Math.floor(Math.random() * palette.length)]
+          });
+        }
+      }
+      function resize() {
+        width = Math.max(1, window.innerWidth); height = Math.max(1, window.innerHeight); ratio = Math.min(2, window.devicePixelRatio || 1);
+        canvas.width = Math.round(width * ratio); canvas.height = Math.round(height * ratio); canvas.style.width = width + "px"; canvas.style.height = height + "px";
+        context.setTransform(ratio, 0, 0, ratio, 0, 0); resetScene();
+        if (running && motionQuery.matches) renderFrame(0, true);
+      }
+      function flowAt(x, y, time) {
+        var closest = 0, nearest = Infinity;
+        whirlpools.forEach(function (vortex, index) {
+          var dx = (x - width * vortex[0]) / (width * .52);
+          var dy = (y - height * vortex[1]) / (height * .48);
+          var distance = dx * dx + dy * dy;
+          if (distance < nearest) { nearest = distance; closest = index; }
+        });
+        var center = whirlpools[closest];
+        var dx = (x - width * center[0]) / (width * .52);
+        var dy = (y - height * center[1]) / (height * .48);
+        var tangentX = -dy * width * .52 * center[2];
+        var tangentY = dx * height * .48 * center[2];
+        return Math.atan2(tangentY, tangentX) + Math.sin(time * .18 + nearest * 9) * .16;
+      }
+      function drawPaintedSky(time, isStatic) {
+        var t = isStatic ? 0 : time;
+        var haze = [
+          [.18, .24, .52, "rgba(40,67,103,.13)"],
+          [.58, .54, .62, "rgba(49,75,105,.11)"],
+          [.91, .24, .48, "rgba(35,62,92,.1)"]
+        ];
+        haze.forEach(function (item) {
+          var x = width * item[0], y = height * item[1];
+          var radius = Math.max(width, height) * item[2];
+          var gradient = context.createRadialGradient(x, y, 0, x, y, radius);
+          gradient.addColorStop(0, item[3]);
+          gradient.addColorStop(1, "rgba(7,19,33,0)");
+          context.fillStyle = gradient;
+          context.fillRect(x - radius, y - radius, radius * 2, radius * 2);
+        });
+        brushStrokes.forEach(function (stroke) {
+          var vortex = whirlpools[stroke.swirl];
+          var orbit = stroke.theta + (isStatic ? 0 : t * stroke.speed * stroke.direction);
+          var x = width * vortex[0] + Math.cos(orbit) * width * .52 * stroke.radius;
+          var y = height * vortex[1] + Math.sin(orbit) * height * .48 * stroke.radius;
+          var angle = flowAt(x, y, t) + stroke.curve;
+          var dx = Math.cos(angle) * stroke.length * .5;
+          var dy = Math.sin(angle) * stroke.length * .5;
+          var bend = stroke.length * stroke.curve * .22;
+          context.globalAlpha = stroke.alpha;
+          context.strokeStyle = stroke.color;
+          context.lineWidth = stroke.thickness;
+          context.lineCap = "round";
+          context.beginPath();
+          context.moveTo(x - dx, y - dy);
+          context.quadraticCurveTo(x + Math.cos(angle + Math.PI / 2) * bend, y + Math.sin(angle + Math.PI / 2) * bend, x + dx, y + dy);
+          context.stroke();
+        });
+        context.globalAlpha = 1;
+        drawPaintedStars(t, isStatic);
+      }
+      function drawPaintedStars(time, isStatic) {
+        var bodies = [
+          { x: .08, y: .22, r: 12, phase: .2 },
+          { x: .23, y: .08, r: 8, phase: 1.1 },
+          { x: .72, y: .19, r: 10, phase: 2.3 },
+          { x: .88, y: .08, r: 19, phase: .7 },
+          { x: .61, y: .53, r: 14, phase: 2.8 },
+          { x: .31, y: .88, r: 8, phase: 1.7 }
+        ];
+        bodies.forEach(function (body, index) {
+          var pulse = isStatic ? 1 : 1 + Math.sin(time * .24 + body.phase) * .035;
+          var x = width * body.x, y = height * body.y, r = body.r * Math.min(1.2, Math.max(.75, width / 900)) * pulse;
+          var glow = context.createRadialGradient(x, y, r * .12, x, y, r * 3.2);
+          glow.addColorStop(0, index === 3 ? "rgba(212,190,126,.19)" : "rgba(188,174,126,.13)");
+          glow.addColorStop(1, "rgba(188,174,126,0)");
+          context.fillStyle = glow;
+          context.beginPath();
+          context.arc(x, y, r * 3.2, 0, Math.PI * 2);
+          context.fill();
+          for (var ring = 0; ring < 3; ring++) {
+            context.beginPath();
+            context.ellipse(x, y, r * (1.2 + ring * .5), r * (.82 + ring * .18), time * .025 + body.phase, 0, Math.PI * 2);
+            context.strokeStyle = ring === 0 ? "rgba(212,190,126,.24)" : "rgba(151,168,174,.09)";
+            context.lineWidth = ring === 0 ? 1.2 : .8;
+            context.stroke();
+          }
+          context.fillStyle = index === 3 ? "rgba(221,199,133,.78)" : "rgba(205,190,142,.66)";
+          context.beginPath();
+          context.arc(x, y, r * .58, 0, Math.PI * 2);
+          context.fill();
+        });
+      }
+      function drawStars(time, isStatic, delta) {
+        stars.forEach(function (star) {
+          if (!isStatic) { star.y += star.fall * delta; star.x += star.drift * delta; if (star.y > height + 3) { star.y = -3; star.x = Math.random() * width; } if (star.x < -3) star.x = width + 3; if (star.x > width + 3) star.x = -3; }
+          var alpha = isStatic ? star.alpha : star.alpha * (.68 + .32 * Math.sin(time * star.twinkle + star.phase));
+          context.globalAlpha = alpha; context.fillStyle = star.color; context.beginPath(); context.arc(star.x, star.y, star.r, 0, Math.PI * 2); context.fill();
+        });
+        context.globalAlpha = 1;
+      }
+      function drawMeteors(time, isStatic, delta) {
+        if (!isStatic && time >= nextMeteorAt && meteors.length < 10) {
+          var speed = random(72, 112), angle = random(.62, .83);
+          meteors.push({ x: random(-width * .15, width * .78), y: random(-height * .22, height * .62), vx: Math.cos(angle) * speed, vy: Math.sin(angle) * speed, life: 0, duration: random(2.8, 4.2), length: random(48, 92), alpha: random(.2, .34), lineWidth: random(1, 1.5) });
+          nextMeteorAt = time + random(.35, .8);
+        }
+        meteors = meteors.filter(function (meteor) {
+          if (!isStatic) {
+            meteor.x += meteor.vx * delta;
+            meteor.y += meteor.vy * delta;
+            meteor.life += delta;
+          }
+          var progress = meteor.life / meteor.duration;
+          if (progress >= 1) return false;
+          var alpha = Math.sin(progress * Math.PI) * meteor.alpha;
+          var magnitude = Math.hypot(meteor.vx, meteor.vy);
+          var tailX = meteor.x - meteor.vx / magnitude * meteor.length;
+          var tailY = meteor.y - meteor.vy / magnitude * meteor.length;
+          var trail = context.createLinearGradient(tailX, tailY, meteor.x, meteor.y);
+          trail.addColorStop(0, "rgba(169,198,174,0)");
+          trail.addColorStop(1, "rgba(247,238,220," + alpha + ")");
+          context.strokeStyle = trail;
+          context.lineWidth = meteor.lineWidth;
+          context.beginPath();
+          context.moveTo(tailX, tailY);
+          context.lineTo(meteor.x, meteor.y);
+          context.stroke();
+          context.fillStyle = "rgba(247,238,220," + alpha + ")";
+          context.beginPath();
+          context.arc(meteor.x, meteor.y, 1.35, 0, Math.PI * 2);
+          context.fill();
+          return true;
+        });
+      }
+      function renderFrame(timestamp, isStatic) {
+        var time = isStatic ? 0 : timestamp / 1000, delta = previousTime ? Math.min(.05, (timestamp - previousTime) / 1000) : 0; previousTime = timestamp;
+        context.clearRect(0, 0, width, height); drawPaintedSky(time, isStatic); drawStars(time, isStatic, delta); drawMeteors(time, isStatic, delta); context.globalAlpha = 1;
+        if (running && !isStatic && !document.hidden) frameId = requestAnimationFrame(function (next) { renderFrame(next, false); });
+      }
+      function visibilityChanged() { if (!running) return; if (document.hidden) { cancelAnimationFrame(frameId); frameId = 0; } else renderFrame(performance.now(), motionQuery.matches); }
+      function motionChanged() { if (!running) return; cancelAnimationFrame(frameId); frameId = 0; renderFrame(motionQuery.matches ? 0 : performance.now(), motionQuery.matches); }
+      function start() { if (running) return; running = true; resize(); meteors = []; previousTime = 0; nextMeteorAt = performance.now() / 1000 + random(.7, 1.5); window.addEventListener("resize", resize, { passive: true }); document.addEventListener("visibilitychange", visibilityChanged); if (motionQuery.addEventListener) motionQuery.addEventListener("change", motionChanged); else if (motionQuery.addListener) motionQuery.addListener(motionChanged); renderFrame(motionQuery.matches ? 0 : performance.now(), motionQuery.matches); }
+      function stop() { if (!running) return; running = false; cancelAnimationFrame(frameId); frameId = 0; window.removeEventListener("resize", resize); document.removeEventListener("visibilitychange", visibilityChanged); if (motionQuery.removeEventListener) motionQuery.removeEventListener("change", motionChanged); else if (motionQuery.removeListener) motionQuery.removeListener(motionChanged); context.clearRect(0, 0, width, height); }
+      window.SpaceBackground = { start: start, stop: stop };
+    })();
+  </script>
+  <script>
+    (function () {
+      var ICON_PLAY = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
+
+      /* ---------- Content (sample data for the pitch demo) ---------- */
+      var UI = {
+        vi: {
+          posterNote: "Bao bì quen thuộc. Trải nghiệm mới.",
+          campaign: "CHĂM SÓC CÁ NHÂN · PERSONAL CARE",
+          demoLabel: "BẢN DEMO · DỮ LIỆU MẪU",
+          settingsTitle: "Cài đặt nghe",
+          phoneListen: "Nghe thông tin sản phẩm",
+          phoneSections: "Thành phần · Cách dùng",
+          phoneCaption: "Chỉ cần quét và nghe. Không cần cài app!",
+          solutionNote: "Chỉ cần quét và nghe. Không cần cài app!",
+          footerCallout: "Thêm hòa nhập trong từng ngày.",
+          footerPersonal: "Beauty & personal care",
+          footerHotels: "Hotels & hospitality",
+          footerNext: "Next: medicines, packaged food",
+          team: "Khánh Thy · Nam Phương · Hồng Phúc",
+          dockLabel: "Điều khiển đọc",
+          listenShort: "Nghe",
+          selected: "Đang chọn",
+          touchCopy: "Nhận biết sản phẩm qua dấu nổi.",
+          scanCopy: "Quét mã trên nhãn.",
+          listenCopy: "Nghe hướng dẫn trực tiếp.",
+          stepTouch: "01 · Chạm",
+          stepScan: "02 · Quét",
+          stepListen: "03 · Nghe",
+          solutionsLabel: "Cách nhận biết và nghe thông tin",
+          allergenTag: "Gây dị ứng",
+          warningLead: "Lưu ý dị ứng",
+          ingredientEyebrow: "DANH SÁCH ĐẦY ĐỦ",
+          ingredientCount: "thành phần",
+          ingredientNote: "Tên thành phần được giữ theo dạng quốc tế.",
+          listen: "Nghe thông tin sản phẩm", listenAgain: "Nghe lại từ đầu",
+          pause: "Tạm dừng", resume: "Tiếp tục", stop: "Dừng",
+          speed: "Tốc độ", slow: "Chậm", normal: "Vừa", fast: "Nhanh", size: "Cỡ chữ",
+          play: "Nghe phần này",
+          reading: "Đang đọc: ", ready: "Nhấn để nghe thông tin.",
+          done: "Đã đọc xong.",
+          noMatchingVoice: "Thiết bị chưa có giọng tiếng Việt (vi-VN). Để tránh đọc sai bằng giọng tiếng Anh, hãy cài giọng vi-VN trên thiết bị hoặc chuyển giao diện sang EN.",
+          noSpeechApi: "Trình duyệt này không hỗ trợ đọc to. Hãy mở bằng Chrome, Safari hoặc Edge.",
+          ttsError: "Không thể tiếp tục đọc. Vui lòng thử lại.",
+          symbolLead: "Ký hiệu nổi trên chai: ",
+        },
+        en: {
+          posterNote: "Your product. Easier to experience.",
+          campaign: "PERSONAL CARE · INCLUSIVE PACKAGING",
+          demoLabel: "DEMO · SAMPLE DATA",
+          settingsTitle: "Listening settings",
+          phoneListen: "Listen to product info",
+          phoneSections: "Ingredients · How to use",
+          phoneCaption: "Just scan and listen. No app needed!",
+          solutionNote: "Just scan and listen. No app needed!",
+          footerCallout: "More inclusion in everyday life.",
+          footerPersonal: "Beauty & personal care",
+          footerHotels: "Hotels & hospitality",
+          footerNext: "Next: medicines, packaged food",
+          team: "Khanh Thy · Nam Phuong · Hong Phuc",
+          dockLabel: "Listening controls",
+          listenShort: "Listen",
+          selected: "Selected",
+          touchCopy: "Identify the product by its raised mark.",
+          scanCopy: "Scan the code on the label.",
+          listenCopy: "Listen to the guidance.",
+          stepTouch: "01 · Touch",
+          stepScan: "02 · Scan",
+          stepListen: "03 · Listen",
+          solutionsLabel: "How to identify and listen",
+          allergenTag: "Allergen",
+          warningLead: "Allergy warning",
+          ingredientEyebrow: "FULL INGREDIENT LIST",
+          ingredientCount: "ingredients",
+          ingredientNote: "Ingredient names are shown in their standard international form.",
+          listen: "Listen to product information", listenAgain: "Listen again from the start",
+          pause: "Pause", resume: "Resume", stop: "Stop",
+          speed: "Speed", slow: "Slow", normal: "Normal", fast: "Fast", size: "Text size",
+          play: "Listen to this section",
+          reading: "Reading: ", ready: "Tap to listen.",
+          done: "Finished reading.",
+          noMatchingVoice: "This device has no voice matching the selected language. Install a matching voice or switch the interface language.",
+          noSpeechApi: "This browser cannot read aloud. Please open the page in Chrome, Safari or Edge.",
+          ttsError: "Reading could not continue. Please try again.",
+          symbolLead: "Raised symbol on the bottle: ",
+        }
+      };
+
+      var PRODUCTS = {
+        "shampoo": {
+          glyph: "line1",
+          vi: {
+            tab: "Dầu gội", name: "Dầu gội Trà xanh", brand: "350 ml",
+            sub: "Làm sạch nhẹ cho tóc thường. Dùng cho tóc ướt.",
+            symbol: "1 vạch nổi nghĩa là dầu gội.",
+            usage: ["Làm ướt tóc.", "Lấy một lượng bằng đồng xu vào lòng bàn tay.", "Xoa đều lên da đầu và tóc, massage nhẹ khoảng một phút.", "Xả sạch bằng nước. Nếu dính vào mắt, rửa ngay bằng nhiều nước."],
+            allergen: "Chứa hương liệu có thể gây dị ứng: Limonene và Linalool. Ngưng dùng nếu thấy ngứa, đỏ hoặc rát da đầu. Tránh để dính vào mắt. Để xa tầm tay trẻ em."
+          },
+          en: {
+            tab: "Shampoo", name: "Green Tea Shampoo", brand: "350 ml",
+            sub: "Gentle cleansing for normal hair. Use on wet hair.",
+            symbol: "One raised line means shampoo.",
+            usage: ["Wet your hair.", "Take a coin-sized amount into your palm.", "Spread over scalp and hair and massage gently for about one minute.", "Rinse well with water. If it gets in your eyes, rinse right away with plenty of water."],
+            allergen: "Contains fragrance allergens: Limonene and Linalool. Stop use if you notice itching, redness or burning on the scalp. Avoid contact with eyes. Keep out of reach of children."
+          },
+          ingredients: ["Aqua", "Sodium Laureth Sulfate", "Cocamidopropyl Betaine", "Glycerin", "Sodium Chloride", "Camellia Sinensis Leaf Extract", "Panthenol", "Citric Acid", "Phenoxyethanol", "Parfum", "Limonene", "Linalool"],
+          flags: ["Limonene", "Linalool"]
+        },
+        "conditioner": {
+          glyph: "line2",
+          vi: {
+            tab: "Dầu xả", name: "Dầu xả Trà xanh", brand: "350 ml",
+            sub: "Giúp tóc mềm và dễ chải. Dùng sau khi gội.",
+            symbol: "2 vạch nổi nghĩa là dầu xả.",
+            usage: ["Gội đầu và vắt bớt nước.", "Thoa từ giữa thân tóc đến ngọn, tránh da đầu.", "Để yên khoảng hai phút.", "Xả sạch bằng nước. Nếu dính vào mắt, rửa ngay bằng nhiều nước."],
+            allergen: "Chứa hương liệu có thể gây dị ứng: Linalool và Citronellol. Ngưng dùng nếu thấy ngứa hoặc đỏ da. Tránh để dính vào mắt. Để xa tầm tay trẻ em."
+          },
+          en: {
+            tab: "Conditioner", name: "Green Tea Conditioner", brand: "350 ml",
+            sub: "Leaves hair soft and easy to comb. Use after shampooing.",
+            symbol: "Two raised lines mean conditioner.",
+            usage: ["Shampoo and squeeze out excess water.", "Apply from mid-length to the ends, avoiding the scalp.", "Leave on for about two minutes.", "Rinse well with water. If it gets in your eyes, rinse right away with plenty of water."],
+            allergen: "Contains fragrance allergens: Linalool and Citronellol. Stop use if you notice itching or redness. Avoid contact with eyes. Keep out of reach of children."
+          },
+          ingredients: ["Aqua", "Cetearyl Alcohol", "Behentrimonium Chloride", "Glycerin", "Camellia Sinensis Leaf Extract", "Panthenol", "Citric Acid", "Phenoxyethanol", "Parfum", "Linalool", "Citronellol"],
+          flags: ["Linalool", "Citronellol"]
+        },
+        "bodywash": {
+          glyph: "dots3",
+          vi: {
+            tab: "Sữa tắm", name: "Sữa tắm Trà xanh", brand: "500 ml",
+            sub: "Tạo bọt mịn, dùng cho cơ thể. Không dùng cho tóc.",
+            symbol: "3 chấm nổi nghĩa là sữa tắm.",
+            usage: ["Làm ướt da.", "Lấy một lượng vừa đủ ra tay hoặc bông tắm và tạo bọt.", "Xoa lên cơ thể, tránh vùng mắt.", "Xả sạch bằng nước."],
+            allergen: "Chứa hương liệu có thể gây dị ứng: Limonene và Linalool. Ngưng dùng nếu thấy ngứa hoặc phát ban. Tránh để dính vào mắt. Để xa tầm tay trẻ em."
+          },
+          en: {
+            tab: "Body wash", name: "Green Tea Body Wash", brand: "500 ml",
+            sub: "Soft lather for the body. Not for use on hair.",
+            symbol: "Three raised dots mean body wash.",
+            usage: ["Wet your skin.", "Pour a small amount onto your hand or a sponge and work up a lather.", "Smooth over your body, avoiding the eyes.", "Rinse well with water."],
+            allergen: "Contains fragrance allergens: Limonene and Linalool. Stop use if you notice itching or rash. Avoid contact with eyes. Keep out of reach of children."
+          },
+          ingredients: ["Aqua", "Sodium Laureth Sulfate", "Cocamidopropyl Betaine", "Glycerin", "Camellia Sinensis Leaf Extract", "Sodium Chloride", "Citric Acid", "Phenoxyethanol", "Parfum", "Limonene", "Linalool"],
+          flags: ["Limonene", "Linalool"]
+        }
+      };
+      var ORDER = ["shampoo", "conditioner", "bodywash"];
+      var HASH = { "shampoo": "shampoo", "conditioner": "conditioner", "bodywash": "bodywash" };
+
+      var SECTION_TITLES = {
+        vi: { allergen: "Cảnh báo dị ứng và an toàn", usage: "Cách dùng", ingredients: "Thành phần" },
+        en: { allergen: "Allergen and safety warning", usage: "How to use", ingredients: "Ingredients" }
+      };
+
+      /* ---------- State ---------- */
+      var state = { lang: "vi", product: "shampoo", rate: 1, size: "md", speaking: false, paused: false };
+      try {
+        var storedLang = localStorage.getItem("ftp-lang");
+        if (storedLang !== null && (storedLang === "vi" || storedLang === "en")) state.lang = storedLang;
+        var storedSize = localStorage.getItem("ftp-size");
+        if (storedSize !== null && ["sm", "md", "lg", "xl"].indexOf(storedSize) !== -1) state.size = storedSize;
+        var storedRate = localStorage.getItem("ftp-rate");
+        if (storedRate !== null) {
+          var parsedRate = Number(storedRate);
+          if (parsedRate === 0.8 || parsedRate === 1 || parsedRate === 1.25) state.rate = parsedRate;
+        }
+      } catch (e) { }
+      var h = (location.hash || "").replace("#", "");
+      if (HASH[h]) state.product = h;
+
+      var $ = function (id) { return document.getElementById(id); };
+      var synth = window.speechSynthesis || null;
+      var voices = [];
+
+      /* ---------- Glyphs ---------- */
+      function glyph(kind) {
+        var inner = "";
+        if (kind === "line1") inner = '<rect x="4" y="11" width="52" height="6" rx="3"/>';
+        if (kind === "line2") inner = '<rect x="4" y="5" width="52" height="6" rx="3"/><rect x="4" y="17" width="52" height="6" rx="3"/>';
+        if (kind === "dots3") inner = '<circle cx="12" cy="14" r="5"/><circle cx="30" cy="14" r="5"/><circle cx="48" cy="14" r="5"/>';
+        return '<svg class="glyph" viewBox="0 0 60 28" fill="currentColor" aria-hidden="true">' + inner + "</svg>";
+      }
+
+      function qrSvg(className) {
+        return '<svg class="' + (className || "qr-art") + '" viewBox="0 0 21 21" aria-hidden="true"><use href="#qr-pattern"/></svg>';
+      }
+
+      function bottleSvg(key) {
+        var shapes = {
+          conditioner: '<path d="M69 25h42v22l18 13v133q0 17-17 17H68q-17 0-17-17V60l18-13z" fill="var(--rose)"/><path d="M75 26V9h30v17" fill="var(--rose-shadow)"/>',
+          shampoo: '<path d="M72 25h36v22l18 15v128q0 16-16 16H70q-16 0-16-16V62l18-15z" fill="var(--sand)"/><path d="M76 25V8h28v17" fill="var(--sand-shadow)"/>',
+          bodywash: '<path d="M70 27h39v20l18 15v130q0 17-17 17H67q-17 0-17-17V62l20-15z" fill="var(--lavender)"/><path d="M76 28V12h27v16" fill="var(--lavender-shadow)"/>'
+        };
+        var mark = key === "shampoo"
+          ? '<rect class="bottle-mark" x="61" y="146" width="25" height="5" rx="2.5"/>'
+          : key === "conditioner"
+            ? '<rect class="bottle-mark" x="59" y="140" width="25" height="5" rx="2.5"/><rect class="bottle-mark" x="59" y="150" width="25" height="5" rx="2.5"/>'
+            : '<circle class="bottle-mark" cx="63" cy="147" r="3.5"/><circle class="bottle-mark" cx="72" cy="147" r="3.5"/><circle class="bottle-mark" cx="81" cy="147" r="3.5"/>';
+        var pump = key === "bodywash" ? '<path d="M78 15V8h35v-4h20v7h-19v4" fill="var(--pump-highlight)" stroke="var(--fg)" stroke-width="4" stroke-linejoin="round"/>' : '<path d="M72 9V4h36v5" fill="var(--surface)" stroke="var(--fg)" stroke-width="4" stroke-linejoin="round"/>';
+        return '<svg class="bottle-art" viewBox="0 0 180 250" aria-hidden="true"><ellipse class="bottle-base-shadow" cx="90" cy="235" rx="52" ry="8"/><g stroke="var(--fg)" stroke-width="4" stroke-linejoin="round">' + shapes[key] + '</g><path d="M73 63h35" stroke="var(--white-wash)" stroke-width="4" stroke-linecap="round"/><rect class="bottle-qr-frame" x="56" y="116" width="68" height="61" rx="7"/>' + mark + '<use href="#qr-pattern" x="92" y="132" width="27" height="27"/>' + pump + '</svg>';
+      }
+
+      function waveMarkup() {
+        return '<span class="wave-icon" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>';
+      }
+
+      /* ---------- Stable UI structure and state updates ---------- */
+      function node(tagName, className, id, text) {
+        var el = document.createElement(tagName);
+        if (className) el.className = className;
+        if (id) el.id = id;
+        if (text !== undefined) el.textContent = text;
+        return el;
+      }
+
+      function clearChildren(el) {
+        while (el.firstChild) el.removeChild(el.firstChild);
+      }
+
+      var ui = {};
+      function createActionButton(sectionId) {
+        var button = node("button", "play");
+        button.type = "button";
+        button.setAttribute("data-id", sectionId);
+        button.insertAdjacentHTML("afterbegin", ICON_PLAY);
+        button.appendChild(node("span", "", "", UI.vi.play));
+        return button;
+      }
+
+      function createInformationStructure() {
+        var tabs = $("tabs");
+        ORDER.forEach(function (key) {
+          var tab = node("button", "tab", "tab-" + key);
+          tab.type = "button";
+          tab.setAttribute("role", "tab");
+          tab.setAttribute("data-k", key);
+          tab.setAttribute("aria-controls", "product-panel");
+          tab.insertAdjacentHTML("afterbegin", bottleSvg(key));
+          tab.appendChild(node("span", "tab-label"));
+          tabs.appendChild(tab);
+        });
+
+        var sections = $("sections");
+        var warning = node("section", "sec warn", "s-allergen");
+        warning.tabIndex = -1;
+        warning.setAttribute("aria-labelledby", "h-allergen");
+        var warningTitle = node("h2", "warning-title", "h-allergen");
+        warningTitle.insertAdjacentHTML("afterbegin", '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 2.8 19a1.5 1.5 0 0 0 1.3 2.2h15.8a1.5 1.5 0 0 0 1.3-2.2L12 3z"/><path d="M12 9v5m0 3h.01"/></svg>');
+        ui.warningLead = node("span");
+        ui.warningBadge = node("span", "warning-badge");
+        warningTitle.appendChild(ui.warningLead);
+        warningTitle.appendChild(ui.warningBadge);
+        ui.warningCopy = node("p");
+        warning.appendChild(warningTitle);
+        warning.appendChild(ui.warningCopy);
+        warning.appendChild(createActionButton("s-allergen"));
+
+        var usage = node("section", "sec", "s-usage");
+        usage.tabIndex = -1;
+        usage.setAttribute("aria-labelledby", "h-usage");
+        ui.usageTitle = node("h2", "", "h-usage");
+        ui.usageList = node("ol", "steps");
+        usage.appendChild(ui.usageTitle);
+        usage.appendChild(ui.usageList);
+        usage.appendChild(createActionButton("s-usage"));
+
+        var ingredients = node("section", "sec", "s-ingredients");
+        ingredients.tabIndex = -1;
+        ingredients.setAttribute("aria-labelledby", "h-ing");
+        var ingredientHead = node("div", "ingredient-head");
+        var ingredientTitleGroup = node("div");
+        ui.ingredientEyebrow = node("p", "ingredient-eyebrow");
+        ui.ingredientTitle = node("h2", "", "h-ing");
+        ui.ingredientCount = node("span", "ingredient-count");
+        ingredientTitleGroup.appendChild(ui.ingredientEyebrow);
+        ingredientTitleGroup.appendChild(ui.ingredientTitle);
+        ingredientHead.appendChild(ingredientTitleGroup);
+        ingredientHead.appendChild(ui.ingredientCount);
+        ui.ingredientNote = node("p", "ingredient-note");
+        ui.ingredientList = node("ol", "ingredient-list");
+        ingredients.appendChild(ingredientHead);
+        ingredients.appendChild(ui.ingredientNote);
+        ingredients.appendChild(ui.ingredientList);
+        ingredients.appendChild(createActionButton("s-ingredients"));
+        sections.appendChild(warning);
+        sections.appendChild(usage);
+        sections.appendChild(ingredients);
+
+        $("solution-qr").insertAdjacentHTML("afterbegin", qrSvg("qr-solution-art"));
+        $("touch-glyph").insertAdjacentHTML("afterbegin", glyph(PRODUCTS.shampoo.glyph));
+        $("hero-glyph").insertAdjacentHTML("afterbegin", glyph(PRODUCTS.shampoo.glyph));
+        ui.tabs = ORDER.map(function (key) { return $("tab-" + key); });
+      }
+
+      function updateTabs(T) {
+        ui.tabs.forEach(function (tab) {
+          var key = tab.getAttribute("data-k");
+          var label = PRODUCTS[key][state.lang].tab;
+          var selected = key === state.product;
+          tab.setAttribute("aria-label", label);
+          tab.setAttribute("data-selected-label", T.selected);
+          tab.setAttribute("aria-selected", String(selected));
+          tab.setAttribute("tabindex", selected ? "0" : "-1");
+          tab.querySelector(".tab-label").textContent = label;
+        });
+      }
+
+      function render() {
+        var p = PRODUCTS[state.product], L = p[state.lang], T = UI[state.lang];
+        document.documentElement.lang = state.lang;
+        document.body.setAttribute("data-size", state.size);
+        $("poster-note").textContent = T.posterNote;
+        $("campaign-tag").textContent = T.campaign;
+        $("demo-label").textContent = T.demoLabel;
+        $("settings-title").textContent = T.settingsTitle;
+        $("phone-product").textContent = L.name;
+        $("phone-listen").textContent = T.phoneListen;
+        $("phone-sections").textContent = T.phoneSections;
+        $("phone-caption").textContent = T.phoneCaption;
+        $("solution-note").textContent = T.solutionNote;
+        $("footer-callout").textContent = T.footerCallout;
+        $("footer-personal").textContent = T.footerPersonal;
+        $("footer-hotels").textContent = T.footerHotels;
+        $("footer-next").textContent = T.footerNext;
+        $("team-name").textContent = T.team;
+        $("audio-dock").setAttribute("aria-label", T.dockLabel);
+        $("touch-copy").textContent = T.touchCopy;
+        $("scan-copy").textContent = T.scanCopy;
+        $("listen-copy").textContent = T.listenCopy;
+        $("step-touch").textContent = T.stepTouch;
+        $("step-scan").textContent = T.stepScan;
+        $("step-listen").textContent = T.stepListen;
+        $("solutions").setAttribute("aria-label", T.solutionsLabel);
+        $("brandline").textContent = L.brand;
+        $("pname").textContent = L.name;
+        $("psub").textContent = L.sub;
+        $("symbol-text").textContent = T.symbolLead + L.symbol;
+        $("speed-lbl").textContent = T.speed;
+        $("rate-slow").textContent = T.slow;
+        $("rate-normal").textContent = T.normal;
+        $("rate-fast").textContent = T.fast;
+        $("size-lbl").textContent = T.size;
+        $("lang-vi").setAttribute("aria-pressed", String(state.lang === "vi"));
+        $("lang-en").setAttribute("aria-pressed", String(state.lang === "en"));
+        $("tabs").setAttribute("aria-label", state.lang === "vi" ? "Chọn sản phẩm" : "Choose a product");
+        $("sections").setAttribute("aria-label", state.lang === "vi" ? "Thông tin sản phẩm" : "Product information");
+        $("product-panel").setAttribute("aria-labelledby", "tab-" + state.product);
+        $("product-panel").setAttribute("aria-label", L.tab);
+        $("listen-all").setAttribute("aria-label", T.listen);
+        $("listen-all").setAttribute("title", T.listen);
+        $("pause-btn").setAttribute("aria-label", state.paused ? T.resume : T.pause);
+        $("stop-btn").setAttribute("aria-label", T.stop);
+        $("status").setAttribute("aria-live", state.speaking && !state.paused ? "off" : "polite");
+        $("status").textContent = state.speaking ? $("status").textContent : (synth ? T.ready : "");
+        $("skip-link").textContent = state.lang === "vi" ? "Bỏ qua đến nút nghe" : "Skip to Listen";
+        $("footer-callout").setAttribute("lang", state.lang);
+        document.title = L.name + " · Feel the Product";
+
+        var sizeLabels = state.lang === "vi" ? ["Cỡ chữ nhỏ", "Cỡ chữ vừa", "Cỡ chữ lớn", "Cỡ chữ rất lớn"] : ["Small text", "Medium text", "Large text", "Extra large text"];
+        var sizeButtons = document.querySelectorAll("button[data-size]");
+        for (var si = 0; si < sizeButtons.length; si++) sizeButtons[si].setAttribute("aria-label", sizeLabels[si]);
+        updateTabs(T);
+
+        ui.warningLead.textContent = T.warningLead;
+        ui.warningBadge.textContent = SECTION_TITLES[state.lang].allergen;
+        ui.warningCopy.textContent = L.allergen;
+        ui.usageTitle.textContent = SECTION_TITLES[state.lang].usage;
+        clearChildren(ui.usageList);
+        L.usage.forEach(function (step, index) {
+          ui.usageList.appendChild(node("li", "", "usage-step-" + index, step));
+        });
+        ui.ingredientEyebrow.textContent = T.ingredientEyebrow;
+        ui.ingredientTitle.textContent = SECTION_TITLES[state.lang].ingredients;
+        ui.ingredientCount.textContent = p.ingredients.length + " " + T.ingredientCount;
+        ui.ingredientNote.textContent = T.ingredientNote;
+        clearChildren(ui.ingredientList);
+        p.ingredients.forEach(function (name) {
+          var item = node("li", p.flags.indexOf(name) !== -1 ? "is-allergen" : "");
+          var ingredientName = node("span", "ingredient-name", "", name);
+          ingredientName.lang = "en-US";
+          item.appendChild(ingredientName);
+          if (p.flags.indexOf(name) !== -1) item.appendChild(node("span", "ingredient-tag", "", T.allergenTag));
+          ui.ingredientList.appendChild(item);
+        });
+        var playLabels = document.querySelectorAll(".information-sections .play span");
+        for (var pi = 0; pi < playLabels.length; pi++) playLabels[pi].textContent = T.play;
+        $("hero-glyph").replaceChildren();
+        $("hero-glyph").insertAdjacentHTML("afterbegin", glyph(p.glyph));
+        $("touch-glyph").replaceChildren();
+        $("touch-glyph").insertAdjacentHTML("afterbegin", glyph(p.glyph));
+        syncPlaybackControls();
+        syncSegs();
+        if (typeof updateMusicDisplay === "function") {
+          updateMusicDisplay();
+        }
+      }
+
+      var playback = { queue: [], index: 0, offset: 0, runId: 0, version: 0, timer: null, retries: 0 };
+      var SPEECH_CHUNK_LIMIT = 150;
+      var SPEECH_WATCHDOG_DELAY = 12000;
+      var SPEECH_MAX_RETRIES = 2;
+      var SPEECH_CANCEL_DELAY = 50;
+
+      function setStatus(message) { $("status").textContent = message; }
+      function setVoiceWarning(message) {
+        var warning = $("voice-warning");
+        warning.textContent = message || "";
+        warning.hidden = !message;
+      }
+
+      function syncPlaybackControls() {
+        var T = UI[state.lang];
+        $("pause-btn").textContent = state.paused ? T.resume : T.pause;
+        $("stop-btn").textContent = T.stop;
+        $("pause-btn").setAttribute("aria-label", state.paused ? T.resume : T.pause);
+        $("stop-btn").setAttribute("aria-label", T.stop);
+        $("pause-btn").disabled = !state.speaking;
+        $("stop-btn").disabled = !state.speaking;
+        $("status").setAttribute("aria-live", state.speaking && !state.paused ? "off" : "polite");
+        $("audio-dock").classList.toggle("is-speaking", state.speaking);
+        $("audio-dock").classList.toggle("is-paused", state.paused);
+        document.body.classList.toggle("is-speaking", state.speaking);
+        document.body.classList.toggle("is-paused", state.paused);
+        $("dock-listen-label").textContent = state.speaking ? T.listenAgain : T.listenShort;
+        $("listen-label").textContent = state.speaking ? T.listenAgain : T.listen;
+        $("listen-all").setAttribute("aria-label", state.speaking ? T.listenAgain : T.listen);
+        $("dock-listen").setAttribute("aria-label", state.speaking ? T.listenAgain : T.listen);
+      }
+
+      /* ---------- Speech ---------- */
+      function loadVoices() {
+        if (synth) voices = synth.getVoices() || [];
+      }
+      if (synth) {
+        loadVoices();
+        if (synth.addEventListener) synth.addEventListener("voiceschanged", loadVoices);
+      }
+
+      function pickVoice(language) {
+        var requested = String(language || "").toLowerCase().replace(/_/g, "-");
+        var baseLanguage = requested.split("-")[0];
+        var candidates = [];
+        for (var i = 0; i < voices.length; i++) {
+          var voiceLanguage = String(voices[i].lang || "").toLowerCase().replace(/_/g, "-");
+          if (voiceLanguage === requested || voiceLanguage.split("-")[0] === baseLanguage) {
+            candidates.push({
+              voice: voices[i],
+              exact: voiceLanguage === requested,
+              preferred: /zira|jenny|aria|ava|samantha|susan|heera|hazel|sara|eva|karen|linda|catherine|michelle|sophie|natasha|female/i.test(voices[i].name || "")
+            });
+          }
+        }
+        candidates.sort(function (a, b) {
+          var aScore = (a.preferred ? 100 : 0) + (a.exact ? 20 : 0) + (a.voice.localService ? 10 : 0) + (a.voice.default ? 1 : 0);
+          var bScore = (b.preferred ? 100 : 0) + (b.exact ? 20 : 0) + (b.voice.localService ? 10 : 0) + (b.voice.default ? 1 : 0);
+          return bScore - aScore;
+        });
+        return candidates.length ? candidates[0].voice : null;
+      }
+
+      // Split on punctuation first, then pack short phrases without exceeding the utterance limit.
+      function chunkText(text, maxLength) {
+        var limit = maxLength || SPEECH_CHUNK_LIMIT;
+        var phrases = String(text).match(/[^.,;!?。！？]+[.,;!?。！？]*/g) || [String(text)];
+        var chunks = [];
+        var current = "";
+
+        phrases.forEach(function (phrase) {
+          var rest = phrase.trim();
+          while (rest.length > limit) {
+            var cut = rest.lastIndexOf(" ", limit);
+            if (cut < 1) cut = limit;
+            var part = rest.slice(0, cut).trim();
+            if (current) {
+              chunks.push(current);
+              current = "";
+            }
+            chunks.push(part);
+            rest = rest.slice(cut).trim();
+          }
+          if (!rest) return;
+          if (!current) current = rest;
+          else if ((current.length + 1 + rest.length) <= limit) current += " " + rest;
+          else {
+            chunks.push(current);
+            current = rest;
+          }
+        });
+        if (current) chunks.push(current);
+        return chunks;
+      }
+
+      function buildSpeechQueue(ids) {
+        var p = PRODUCTS[state.product], L = p[state.lang], T = UI[state.lang];
+        var queue = [];
+        function add(text, language, sectionId, highlightId, title) {
+          chunkText(text, SPEECH_CHUNK_LIMIT).forEach(function (part) {
+            queue.push({ text: part, lang: language, sectionId: sectionId, highlightId: highlightId || sectionId, title: title });
+          });
+        }
+
+        if (ids.indexOf("product-panel") !== -1) {
+          add(L.name + ". " + L.brand + ". " + L.sub + " " + L.symbol, state.lang === "vi" ? "vi-VN" : "en-US", "product-panel", "product-panel", L.name);
+        }
+        if (ids.indexOf("s-allergen") !== -1) {
+          var warningTitle = SECTION_TITLES[state.lang].allergen;
+          add(warningTitle + ". " + L.allergen, state.lang === "vi" ? "vi-VN" : "en-US", "s-allergen", "s-allergen", warningTitle);
+        }
+        if (ids.indexOf("s-usage") !== -1) {
+          var usageTitle = SECTION_TITLES[state.lang].usage;
+          var usageLanguage = state.lang === "vi" ? "vi-VN" : "en-US";
+          var usageParts = [{ text: usageTitle + ".", highlightId: "s-usage", title: usageTitle }];
+          L.usage.forEach(function (step, index) {
+            var stepLabel = state.lang === "vi" ? "Bước " + (index + 1) + ". " : "Step " + (index + 1) + ". ";
+            usageParts.push({
+              text: stepLabel + step,
+              highlightId: "usage-step-" + index,
+              title: usageTitle + " " + stepLabel
+            });
+          });
+          var usageText = usageParts.map(function (part) { return part.text; }).join(" ");
+          var usageRanges = [];
+          var usageSearchFrom = 0;
+          usageParts.forEach(function (part) {
+            var start = usageText.indexOf(part.text, usageSearchFrom);
+            if (start < 0) return;
+            usageRanges.push({ start: start, end: start + part.text.length, highlightId: part.highlightId, title: part.title });
+            usageSearchFrom = start + part.text.length;
+          });
+          var chunkSearchFrom = 0;
+          chunkText(usageText, SPEECH_CHUNK_LIMIT).forEach(function (part) {
+            var start = usageText.indexOf(part, chunkSearchFrom);
+            if (start < 0) start = chunkSearchFrom;
+            var chunkEnd = start + part.length;
+            var chunkRanges = usageRanges.filter(function (candidate) {
+              return candidate.start < chunkEnd && candidate.end > start;
+            }).map(function (candidate) {
+              return {
+                start: Math.max(0, candidate.start - start),
+                end: Math.min(part.length, candidate.end - start),
+                highlightId: candidate.highlightId,
+                title: candidate.title
+              };
+            });
+            var range = usageRanges.filter(function (candidate) {
+              return start >= candidate.start && start < candidate.end;
+            })[0] || usageRanges[0];
+            queue.push({
+              text: part,
+              lang: usageLanguage,
+              sectionId: "s-usage",
+              highlightId: range ? range.highlightId : "s-usage",
+              title: range ? range.title : usageTitle,
+              highlights: chunkRanges
+            });
+            chunkSearchFrom = chunkEnd;
+          });
+        }
+        if (ids.indexOf("s-ingredients") !== -1) {
+          var ingredientTitle = SECTION_TITLES[state.lang].ingredients;
+          if (state.lang === "en") {
+            add(ingredientTitle + ". " + p.ingredients.join(", "), "en-US", "s-ingredients", "s-ingredients", ingredientTitle);
+          } else {
+            add(ingredientTitle + ".", "vi-VN", "s-ingredients", "s-ingredients", ingredientTitle);
+            add(p.ingredients.join(", "), "en-US", "s-ingredients", "s-ingredients", ingredientTitle);
+          }
+        }
+        return queue;
+      }
+
+      function highlight(id) {
+        var active = document.querySelectorAll(".reading");
+        for (var i = 0; i < active.length; i++) active[i].classList.remove("reading");
+        if (!id) return;
+        var target = $(id);
+        if (!target) return;
+        var section = target.closest ? target.closest(".sec") : null;
+        if (section) section.classList.add("reading");
+        if (target !== section) target.classList.add("reading");
+        var scrollTarget = section || target;
+        if (typeof scrollTarget.scrollIntoView === "function") {
+          scrollTarget.scrollIntoView({
+            behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+            block: "center"
+          });
+        }
+      }
+
+      function clearWatchdog() {
+        if (playback.timer !== null) window.clearTimeout(playback.timer);
+        playback.timer = null;
+      }
+
+      function finishSpeech(completed) {
+        clearWatchdog();
+        state.speaking = false;
+        state.paused = false;
+        syncPlaybackControls();
+        highlight(null);
+        setStatus(completed ? UI[state.lang].done : UI[state.lang].ready);
+      }
+
+      function armWatchdog(runId, version) {
+        clearWatchdog();
+        playback.timer = window.setTimeout(function () {
+          if (runId !== playback.runId || version !== playback.version || state.paused) return;
+          var T = UI[state.lang];
+          if (playback.retries >= 2) {
+            setVoiceWarning(T.ttsError);
+            finishSpeech(false);
+            return;
+          }
+          playback.retries++;
+          playback.version++;
+          var retryVersion = playback.version;
+          try { synth.cancel(); } catch (error) { setVoiceWarning(T.ttsError); }
+          // Reuse the current queue index and boundary offset after canceling a stalled chunk.
+          playback.timer = window.setTimeout(function () {
+            if (runId === playback.runId && retryVersion === playback.version) speakCurrent(runId);
+          }, SPEECH_CANCEL_DELAY);
+        }, SPEECH_WATCHDOG_DELAY);
+      }
+
+      function speakCurrent(runId) {
+        if (runId !== playback.runId || !state.speaking || state.paused) return;
+        if (playback.index >= playback.queue.length) {
+          finishSpeech(true);
+          return;
+        }
+        var item = playback.queue[playback.index];
+        var text = item.text.slice(playback.offset);
+        if (!text) {
+          playback.index++;
+          playback.offset = 0;
+          playback.retries = 0;
+          speakCurrent(runId);
+          return;
+        }
+        var version = ++playback.version;
+        var baseOffset = playback.offset;
+        var utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = item.lang;
+        var voice = pickVoice(item.lang);
+        if (voice) utterance.voice = voice;
+        utterance.rate = Math.min(1.25, state.rate * 1.04);
+        utterance.pitch = 1.12;
+        utterance.onstart = function () {
+          if (runId !== playback.runId || version !== playback.version) return;
+          highlight(item.highlightId);
+          setStatus(UI[state.lang].reading + item.title);
+          armWatchdog(runId, version);
+        };
+        utterance.onboundary = function (event) {
+          if (runId !== playback.runId || version !== playback.version) return;
+          if (typeof event.charIndex === "number") playback.offset = Math.min(item.text.length, baseOffset + event.charIndex);
+          if (item.highlights && typeof event.charIndex === "number") {
+            var activeHighlight = item.highlights.filter(function (range) {
+              return event.charIndex >= range.start && event.charIndex < range.end;
+            })[0];
+            if (activeHighlight) {
+              highlight(activeHighlight.highlightId);
+              setStatus(UI[state.lang].reading + activeHighlight.title);
+            }
+          }
+          armWatchdog(runId, version);
+        };
+        utterance.onend = function () {
+          if (runId !== playback.runId || version !== playback.version) return;
+          clearWatchdog();
+          playback.index++;
+          playback.offset = 0;
+          playback.retries = 0;
+          speakCurrent(runId);
+        };
+        utterance.onerror = function (event) {
+          if (runId !== playback.runId || version !== playback.version) return;
+          clearWatchdog();
+          setVoiceWarning(UI[state.lang].ttsError);
+          finishSpeech(false);
+        };
+        try {
+          synth.speak(utterance);
+          armWatchdog(runId, version);
+        } catch (error) {
+          setVoiceWarning(UI[state.lang].ttsError);
+          finishSpeech(false);
+        }
+      }
+
+      function stopSpeech(silent) {
+        playback.runId++;
+        playback.version++;
+        clearWatchdog();
+        state.speaking = false;
+        state.paused = false;
+        playback.queue = [];
+        playback.index = 0;
+        playback.offset = 0;
+        playback.retries = 0;
+        if (synth) synth.cancel();
+        highlight(null);
+        syncPlaybackControls();
+        if (!silent) setStatus(UI[state.lang].ready);
+      }
+
+      function speakSequence(ids) {
+        if (!synth || typeof window.SpeechSynthesisUtterance !== "function") {
+          setVoiceWarning(UI[state.lang].noSpeechApi);
+          return;
+        }
+        loadVoices();
+        var queue = buildSpeechQueue(ids);
+        if (!queue.length) return;
+        var requiredLanguages = [];
+        queue.forEach(function (item) {
+          if (requiredLanguages.indexOf(item.lang) === -1) requiredLanguages.push(item.lang);
+        });
+        var hasMatchingVoice = requiredLanguages.every(function (language) {
+          return !!pickVoice(language);
+        });
+
+        stopSpeech(true);
+        if (!hasMatchingVoice) {
+          setVoiceWarning(UI[state.lang].noMatchingVoice);
+          setStatus(UI[state.lang].ready);
+          return;
+        }
+        if (typeof musicState !== "undefined" && musicState && (musicState.isPlaying || musicState.wantsPlayback)) {
+          pauseMusic();
+        }
+        setVoiceWarning("");
+
+        playback.runId++;
+        var runId = playback.runId;
+        playback.version++;
+        clearWatchdog();
+        synth.cancel();
+        playback.queue = queue;
+        playback.index = 0;
+        playback.offset = 0;
+        playback.retries = 0;
+        state.speaking = true;
+        state.paused = false;
+        syncPlaybackControls();
+        window.setTimeout(function () {
+          if (runId === playback.runId) speakCurrent(runId);
+        }, SPEECH_CANCEL_DELAY);
+      }
+
+      function togglePause() {
+        if (!state.speaking || !synth) return;
+        if (!state.paused) {
+          // Android-safe pause: keep the current chunk and boundary offset, then cancel instead of pausing the engine.
+          state.paused = true;
+          playback.version++;
+          clearWatchdog();
+          synth.cancel();
+        } else {
+          state.paused = false;
+          var runId = playback.runId;
+          window.setTimeout(function () {
+            if (runId === playback.runId && !state.paused) speakCurrent(runId);
+          }, SPEECH_CANCEL_DELAY);
+        }
+        syncPlaybackControls();
+      }
+
+      function selectProduct(key, returnFocus) {
+        if (!HASH[key]) return;
+        if (key !== state.product) {
+          stopSpeech(true);
+          state.product = key;
+          try { history.replaceState(null, "", "#" + HASH[key]); } catch (e) { location.hash = HASH[key]; }
+          render();
+        }
+        if (returnFocus) $("tab-" + key).focus();
+      }
+
+      /* ---------- Shower Chill Mode (Audio Controller) ---------- */
+      var SHOWER_TRACKS = {
+        vi: { title: "Có nơi nào ổn không", artist: "Đạt G", url: "./assets/audio/shower-vi.mp4", ready: "Sẵn sàng phát", playing: "Đang phát", paused: "Đã tạm dừng", error: "Không thể tải bài hát lúc này. Vui lòng kiểm tra kết nối.", play: "Phát nhạc", pause: "Tạm dừng nhạc", progress: "Tiến trình bài hát", back: "Lùi 10 giây", forward: "Tua tới 10 giây", collapse: "Thu nhỏ trình phát", timer: "Hẹn giờ tắt · 15 phút", timerCancel: "Hủy hẹn giờ", timerDone: "Đã tắt nhạc sau 15 phút", miniPlaying: "Đang phát", miniPaused: "Đã tạm dừng", miniOpen: "Mở trình phát nhạc", sleepAria: "Hẹn giờ tắt sau 15 phút", toggle: "Bật Shower Chill", heading: "Thư giãn trong làn nước", subtitle: "Âm nhạc tuyển chọn giúp bạn thư thái khi tắm", languageGroup: "Ngôn ngữ bài hát", fabTitle: "Mở chế độ nghe nhạc thư giãn", coverKicker: "Một chút thư giãn" },
+        en: { title: "Deja Vu", artist: "Olivia Rodrigo", url: "./assets/audio/shower-en.mp4", ready: "Ready to play", playing: "Now playing", paused: "Paused", error: "Could not load the song right now. Please check your connection.", play: "Play music", pause: "Pause music", progress: "Track progress", back: "Skip back 10 seconds", forward: "Skip forward 10 seconds", collapse: "Minimize player", timer: "Sleep timer · 15 minutes", timerCancel: "Cancel timer", timerDone: "Music stopped after 15 minutes", miniPlaying: "Now playing", miniPaused: "Paused", miniOpen: "Open music player", sleepAria: "Set sleep timer for 15 minutes", toggle: "Open Shower Chill", heading: "Relax with the water", subtitle: "A calm soundtrack for your shower", languageGroup: "Song language", fabTitle: "Open Shower Chill music", coverKicker: "Take a quiet moment" }
+      };
+      var musicAudio = new Audio();
+      musicAudio.preload = "metadata";
+      musicAudio.loop = true;
+      var musicState = { isOpen: false, isPlaying: false, loadedLang: null, error: false, wantsPlayback: false, hasStarted: false, returnFocus: null, playRequestId: 0, sleepTimer: 0, timerExpired: false };
+
+      function currentTrack() { return SHOWER_TRACKS[state.lang] || SHOWER_TRACKS.vi; }
+      function formatMediaTime(seconds) {
+        if (!isFinite(seconds) || seconds < 0) return "--:--";
+        var total = Math.floor(seconds), minutes = Math.floor(total / 60), remainder = total % 60, hours = Math.floor(minutes / 60);
+        if (hours) return hours + ":" + String(minutes % 60).padStart(2, "0") + ":" + String(remainder).padStart(2, "0");
+        return String(minutes).padStart(2, "0") + ":" + String(remainder).padStart(2, "0");
+      }
+
+      function updateMediaSession() {
+        if (!("mediaSession" in navigator)) return;
+        var track = currentTrack();
+        try {
+          if ("MediaMetadata" in window) navigator.mediaSession.metadata = new MediaMetadata({ title: track.title, artist: track.artist, album: "Shower Chill" });
+          navigator.mediaSession.playbackState = musicState.isPlaying ? "playing" : "paused";
+          if (typeof navigator.mediaSession.setActionHandler === "function") {
+            navigator.mediaSession.setActionHandler("play", playMusic);
+            navigator.mediaSession.setActionHandler("pause", pauseMusic);
+            navigator.mediaSession.setActionHandler("seekbackward", function () { skipMusicBy(-10); });
+            navigator.mediaSession.setActionHandler("seekforward", function () { skipMusicBy(10); });
+            navigator.mediaSession.setActionHandler("seekto", function (details) {
+              if (isFinite(musicAudio.duration) && isFinite(details.seekTime)) { musicAudio.currentTime = Math.max(0, Math.min(musicAudio.duration, details.seekTime)); updateMusicProgress(); }
+            });
+          }
+        } catch (error) { console.warn("Media Session controls are unavailable:", error); }
+      }
+
+      function updateMusicProgress() {
+        var progress = $("music-progress"), current = $("music-current-time"), durationLabel = $("music-duration");
+        if (!progress || !current || !durationLabel) return;
+        var duration = musicAudio.duration, hasDuration = isFinite(duration) && duration > 0;
+        var position = hasDuration ? Math.min(1000, Math.max(0, Math.round(musicAudio.currentTime / duration * 1000))) : 0;
+        progress.disabled = !hasDuration;
+        progress.value = String(position);
+        progress.style.setProperty("--progress", (position / 10) + "%");
+        $("music-previous-btn").disabled = !hasDuration;
+        $("music-next-btn").disabled = !hasDuration;
+        current.textContent = formatMediaTime(musicAudio.currentTime);
+        durationLabel.textContent = formatMediaTime(duration);
+        progress.setAttribute("aria-valuetext", formatMediaTime(musicAudio.currentTime) + " / " + formatMediaTime(duration));
+        if ("mediaSession" in navigator && typeof navigator.mediaSession.setPositionState === "function" && hasDuration) {
+          try { navigator.mediaSession.setPositionState({ duration: duration, playbackRate: musicAudio.playbackRate || 1, position: Math.min(duration, musicAudio.currentTime) }); } catch (error) { console.warn("Could not update Media Session position:", error); }
+        }
+      }
+
+      function seekMusicFromProgress() {
+        var progress = $("music-progress");
+        if (!progress || !isFinite(musicAudio.duration) || musicAudio.duration <= 0) return;
+        musicAudio.currentTime = Number(progress.value) / Number(progress.max) * musicAudio.duration;
+        updateMusicProgress();
+      }
+
+      function skipMusicBy(seconds) {
+        if (!isFinite(musicAudio.duration) || musicAudio.duration <= 0) return;
+        musicAudio.currentTime = Math.max(0, Math.min(musicAudio.duration, musicAudio.currentTime + seconds));
+        updateMusicProgress();
+      }
+
+      function loadTrackForCurrentLang() {
+        var lang = state.lang === "vi" ? "vi" : "en", track = SHOWER_TRACKS[lang];
+        if (musicState.loadedLang !== lang) { musicAudio.src = track.url; musicState.loadedLang = lang; musicAudio.load(); }
+        musicState.error = false;
+        updateMusicProgress();
+        updateMusicDisplay();
+      }
+
+      function playMusic() {
+        stopSpeech(true);
+        loadTrackForCurrentLang();
+        musicState.error = false;
+        musicState.wantsPlayback = true;
+        var requestId = ++musicState.playRequestId;
+        try {
+          var playPromise = musicAudio.play();
+          if (playPromise && typeof playPromise.catch === "function") playPromise.catch(function (error) {
+            if (requestId !== musicState.playRequestId) return;
+            if (error && error.name !== "AbortError") console.warn("Audio playback was blocked or failed:", error);
+            musicState.isPlaying = false; musicState.wantsPlayback = false; musicState.error = !error || error.name !== "AbortError"; updateMusicUI();
+          });
+        } catch (error) { console.warn("Audio playback failed:", error); musicState.isPlaying = false; musicState.wantsPlayback = false; musicState.error = true; updateMusicUI(); }
+      }
+
+      function pauseMusic() {
+        musicState.playRequestId++;
+        musicState.wantsPlayback = false;
+        musicAudio.pause();
+        musicState.isPlaying = false;
+        updateMusicUI();
+      }
+
+      function toggleMusicPlayback() { if (musicState.isPlaying) pauseMusic(); else playMusic(); }
+
+      function openShowerModal() {
+        if (musicState.isOpen) return;
+        musicState.isOpen = true;
+        musicState.returnFocus = document.activeElement;
+        var modal = $("shower-modal");
+        modal.removeAttribute("hidden");
+        modal.setAttribute("aria-hidden", "false");
+        requestAnimationFrame(function () { modal.classList.add("is-active"); });
+        if (window.SpaceBackground) window.SpaceBackground.start();
+        updateMusicDisplay();
+        $("shower-close-btn").focus();
+        updateMusicUI();
+      }
+
+      function closeShowerModal() {
+        if (!musicState.isOpen) return;
+        musicState.isOpen = false;
+        var modal = $("shower-modal");
+        modal.classList.remove("is-active");
+        modal.setAttribute("aria-hidden", "true");
+        if (window.SpaceBackground) window.SpaceBackground.stop();
+        window.setTimeout(function () { if (!musicState.isOpen) modal.setAttribute("hidden", ""); }, 240);
+        updateMusicUI();
+        var returnFocus = musicState.returnFocus;
+        if (returnFocus && typeof returnFocus.focus === "function") returnFocus.focus();
+        else $("shower-toggle-btn").focus();
+      }
+
+      function handleMusicLanguageChange() {
+        var resumePlayback = musicState.isPlaying;
+        musicAudio.pause();
+        musicState.isPlaying = false;
+        musicState.wantsPlayback = resumePlayback;
+        musicState.loadedLang = null;
+        musicState.error = false;
+        if (resumePlayback) playMusic();
+        else updateMusicDisplay();
+      }
+
+      function updateMusicDisplay() {
+        var track = currentTrack(), lang = state.lang;
+        $("shower-modal").setAttribute("data-lang", lang);
+        $("shower-badge").textContent = "Shower Chill";
+        $("shower-title").textContent = track.heading;
+        $("shower-subtitle").textContent = track.subtitle;
+        $("cover-kicker").textContent = track.coverKicker;
+        $("music-track-title").textContent = track.title;
+        $("music-track-artist").textContent = track.artist;
+        $("shower-modal").setAttribute("aria-label", track.heading + ": " + track.title + " — " + track.artist);
+        document.querySelector(".shower-lang-controls").setAttribute("aria-label", track.languageGroup);
+        $("music-progress").setAttribute("aria-label", track.progress);
+        $("music-progress-label").textContent = track.progress;
+        $("music-previous-btn").setAttribute("aria-label", track.back);
+        $("music-next-btn").setAttribute("aria-label", track.forward);
+        $("shower-close-btn").setAttribute("aria-label", track.collapse);
+        $("shower-btn-label").textContent = track.toggle;
+        $("shower-fab-label").textContent = "Shower Chill";
+        $("shower-fab").setAttribute("aria-label", track.fabTitle);
+        $("shower-fab").setAttribute("title", track.fabTitle);
+        $("sleep-timer-btn").setAttribute("aria-label", musicState.sleepTimer ? track.timerCancel : track.sleepAria);
+        $("sleep-timer-label").textContent = musicState.sleepTimer ? track.timerCancel : musicState.timerExpired ? track.timerDone : track.timer;
+        $("mini-track-label").textContent = musicState.isPlaying ? track.miniPlaying : track.miniPaused;
+        $("mini-track-title").textContent = track.title + " · " + track.artist;
+        $("mini-music-open").setAttribute("aria-label", track.miniOpen);
+        var langButtons = document.querySelectorAll("[data-shower-lang]");
+        for (var i = 0; i < langButtons.length; i++) langButtons[i].setAttribute("aria-pressed", String(langButtons[i].getAttribute("data-shower-lang") === lang));
+        updateMediaSession();
+        updateMusicUI();
+      }
+
+      function updateMusicUI() {
+        var track = currentTrack(), status = $("shower-status-text"), playButton = $("shower-modal-play-btn"), mini = $("music-mini-player"), dock = $("audio-dock");
+        if (status) { status.textContent = musicState.error ? track.error : musicState.isPlaying ? track.playing : musicState.hasStarted ? track.paused : track.ready; status.setAttribute("data-error", String(musicState.error)); }
+        if (playButton) { playButton.setAttribute("aria-label", musicState.isPlaying ? track.pause : track.play); playButton.setAttribute("title", musicState.isPlaying ? track.pause : track.play); }
+        $("music-play-icon").style.display = musicState.isPlaying ? "none" : "";
+        $("music-pause-icon").style.display = musicState.isPlaying ? "" : "none";
+        $("shower-modal").classList.toggle("is-playing", musicState.isPlaying);
+        mini.hidden = !musicState.hasStarted || musicState.isOpen;
+        dock.classList.toggle("has-music", !mini.hidden);
+        document.body.classList.toggle("has-music-docked", !mini.hidden);
+        $("music-indicator").classList.toggle("is-playing", musicState.isPlaying);
+        $("mini-track-label").textContent = musicState.isPlaying ? track.miniPlaying : track.miniPaused;
+        $("mini-play-icon").style.display = musicState.isPlaying ? "none" : "";
+        $("mini-pause-icon").style.display = musicState.isPlaying ? "" : "none";
+        $("mini-music-toggle").setAttribute("aria-label", musicState.isPlaying ? track.pause : track.play);
+        updateMediaSession();
+      }
+
+      function toggleSleepTimer() {
+        var button = $("sleep-timer-btn"), track = currentTrack();
+        if (musicState.sleepTimer) {
+          window.clearTimeout(musicState.sleepTimer); musicState.sleepTimer = 0; musicState.timerExpired = false;
+        } else {
+          musicState.timerExpired = false;
+          musicState.sleepTimer = window.setTimeout(function () {
+            musicState.sleepTimer = 0; musicState.timerExpired = true; pauseMusic(); updateMusicDisplay();
+          }, 15 * 60 * 1000);
+        }
+        button.setAttribute("aria-pressed", String(Boolean(musicState.sleepTimer)));
+        $("sleep-timer-label").textContent = musicState.sleepTimer ? track.timerCancel : track.timer;
+        button.setAttribute("aria-label", musicState.sleepTimer ? track.timerCancel : track.sleepAria);
+      }
+
+      musicAudio.addEventListener("play", function () { musicState.isPlaying = true; musicState.error = false; musicState.hasStarted = true; updateMusicUI(); });
+      musicAudio.addEventListener("pause", function () { musicState.isPlaying = false; updateMusicUI(); });
+      musicAudio.addEventListener("ended", function () { if (!musicState.wantsPlayback) return; musicAudio.currentTime = 0; playMusic(); });
+      musicAudio.addEventListener("error", function () { musicState.isPlaying = false; musicState.error = true; updateMusicUI(); });
+      musicAudio.addEventListener("timeupdate", updateMusicProgress);
+      musicAudio.addEventListener("loadedmetadata", updateMusicProgress);
+      musicAudio.addEventListener("durationchange", updateMusicProgress);
+      $("music-progress").addEventListener("input", seekMusicFromProgress);
+      $("music-previous-btn").addEventListener("click", function () { skipMusicBy(-10); });
+      $("music-next-btn").addEventListener("click", function () { skipMusicBy(10); });
+      $("sleep-timer-btn").addEventListener("click", toggleSleepTimer);
+      var showerModal = $("shower-modal");
+      showerModal.addEventListener("click", function (event) {
+        if (event.target === showerModal) closeShowerModal();
+      });
+
+      /* ---------- Events ---------- */
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && musicState.isOpen) {
+          closeShowerModal();
+          return;
+        }
+        if (musicState.isOpen && e.key === "Tab") {
+          var focusable = Array.prototype.filter.call(showerModal.querySelectorAll('button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])'), function (element) {
+            return element.getClientRects().length > 0;
+          });
+          if (!focusable.length) return;
+          var first = focusable[0];
+          var last = focusable[focusable.length - 1];
+          if (e.shiftKey && document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+          } else if (!e.shiftKey && document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+          }
+          return;
+        }
+        var tab = e.target.closest ? e.target.closest('[role="tab"]') : null;
+        if (!tab) return;
+        var index = ORDER.indexOf(tab.getAttribute("data-k"));
+        var next = index;
+        if (e.key === "ArrowRight" || e.key === "ArrowDown") next = (index + 1) % ORDER.length;
+        else if (e.key === "ArrowLeft" || e.key === "ArrowUp") next = (index + ORDER.length - 1) % ORDER.length;
+        else if (e.key === "Home") next = 0;
+        else if (e.key === "End") next = ORDER.length - 1;
+        else return;
+        e.preventDefault();
+        selectProduct(ORDER[next], true);
+      });
+
+      document.addEventListener("click", function (e) {
+        var t = e.target;
+        var btn = t.closest ? t.closest("button") : null;
+        if (!btn) return;
+
+        if (btn.id === "shower-toggle-btn" || btn.id === "shower-fab" || btn.id === "mini-music-open") {
+          openShowerModal();
+          return;
+        }
+        if (btn.id === "shower-close-btn") {
+          closeShowerModal();
+          return;
+        }
+        if (btn.id === "shower-modal-play-btn" || btn.id === "mini-music-toggle") {
+          toggleMusicPlayback();
+          return;
+        }
+
+        if (btn.id === "listen-all" || btn.id === "dock-listen") { speakSequence(["product-panel", "s-allergen", "s-usage", "s-ingredients"]); return; }
+        if (btn.classList.contains("play")) { speakSequence([btn.getAttribute("data-id")]); return; }
+        if (btn.id === "stop-btn") { stopSpeech(false); return; }
+        if (btn.id === "pause-btn") { togglePause(); return; }
+        if (btn.id === "lang-vi" || btn.id === "lang-en") {
+          setInterfaceLanguage(btn.id === "lang-vi" ? "vi" : "en");
+          return;
+        }
+        var showerLang = btn.getAttribute("data-shower-lang");
+        if (showerLang === "vi" || showerLang === "en") {
+          setInterfaceLanguage(showerLang);
+          return;
+        }
+        if (btn.classList.contains("tab")) {
+          selectProduct(btn.getAttribute("data-k"), false); return;
+        }
+        var rate = btn.getAttribute("data-rate");
+        if (rate) {
+          state.rate = parseFloat(rate);
+          try { localStorage.setItem("ftp-rate", String(state.rate)); } catch (x) { }
+          syncSegs(); return;
+        }
+        var size = btn.getAttribute("data-size");
+        if (size) {
+          state.size = size; document.body.setAttribute("data-size", size);
+          try { localStorage.setItem("ftp-size", size); } catch (x) { }
+          syncSegs(); return;
+        }
+      });
+
+      function setInterfaceLanguage(nl) {
+        if (nl === state.lang) return;
+        stopSpeech(true);
+        state.lang = nl;
+        try { localStorage.setItem("ftp-lang", nl); } catch (x) { }
+        render();
+        handleMusicLanguageChange();
+      }
+
+      window.addEventListener("hashchange", function () {
+        var hh = (location.hash || "").replace("#", "");
+        if (HASH[hh] && hh !== state.product) { stopSpeech(true); state.product = hh; render(); }
+      });
+
+      function syncSegs() {
+        var r = document.querySelectorAll("[data-rate]");
+        for (var i = 0; i < r.length; i++) r[i].setAttribute("aria-pressed", String(parseFloat(r[i].getAttribute("data-rate")) === state.rate));
+        var s = document.querySelectorAll("button[data-size]");
+        for (var j = 0; j < s.length; j++) s[j].setAttribute("aria-pressed", String(s[j].getAttribute("data-size") === state.size));
+      }
+
+      createInformationStructure();
+      render();
+      updateMusicDisplay();
+      if (!synth || typeof window.SpeechSynthesisUtterance !== "function") setVoiceWarning(UI[state.lang].noSpeechApi);
+      syncSegs();
+    })();
+  </script>
+
+</body>
+
+</html>
